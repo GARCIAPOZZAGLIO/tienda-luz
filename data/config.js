@@ -245,9 +245,9 @@ window.CONFIG = {
   generos: {
     incluirUnisexEnGenero: true,
     lista: [
-      { slug: "mujer",  nombre: "Mujer",  imagen: "" },
-      { slug: "hombre", nombre: "Hombre", imagen: "" },
-      { slug: "unisex", nombre: "Unisex", imagen: "" }
+      { slug: "mujer",  nombre: "Mujer",  imagen: "img/productos/jeans-wide-leg-1.jpg" },
+      { slug: "hombre", nombre: "Hombre", imagen: "img/productos/buzo-hombre-1.jpg" },
+      { slug: "unisex", nombre: "Unisex", imagen: "img/productos/gorro-unisex-1.jpg" }
     ]
   },
 
@@ -270,38 +270,38 @@ window.CONFIG = {
      El "slug" es el identificador interno: sin espacios, sin acentos y en
      minúscula. Es lo que va en el campo "categoria" de cada producto.     */
   categorias: [
-    { slug: "camperas", nombre: "Camperas", imagen: "", subcategorias: [
+    { slug: "camperas", nombre: "Camperas", imagen: "img/productos/campera-jeans-1.jpg", subcategorias: [
       { slug: "deportivas", nombre: "Deportivas" },
       { slug: "abrigo",     nombre: "De abrigo" }
     ]},
-    { slug: "jeans", nombre: "Jeans", imagen: "", subcategorias: [
+    { slug: "jeans", nombre: "Jeans", imagen: "img/productos/jeans-wide-leg-1.jpg", subcategorias: [
       { slug: "wide-leg", nombre: "Wide Leg" },
       { slug: "baggy",    nombre: "Baggy" },
       { slug: "jogger",   nombre: "Jogger" }
     ]},
-    { slug: "remeras", nombre: "Remeras", imagen: "", subcategorias: [
+    { slug: "remeras", nombre: "Remeras", imagen: "img/productos/remera-morley-cierre-1.jpg", subcategorias: [
       { slug: "estampadas", nombre: "Estampadas" },
       { slug: "con-cierre", nombre: "Con cierre" },
       { slug: "basicas",    nombre: "Básicas" },
       { slug: "puperas",    nombre: "Puperas" },
       { slug: "manga-larga", nombre: "Manga larga" }
     ]},
-    { slug: "buzos", nombre: "Buzos", imagen: "", subcategorias: [
+    { slug: "buzos", nombre: "Buzos", imagen: "img/productos/buzo-hombre-1.jpg", subcategorias: [
       { slug: "basicos", nombre: "Básicos" }
     ]},
-    { slug: "calzado", nombre: "Calzado", imagen: "", subcategorias: [
+    { slug: "calzado", nombre: "Calzado", imagen: "img/productos/zapatilla-deportiva-1.jpg", subcategorias: [
       { slug: "borcegos",    nombre: "Borcegos" },
       { slug: "zapatillas",  nombre: "Zapatillas" }
     ]},
-    { slug: "ropa-interior", nombre: "Ropa interior", imagen: "", subcategorias: [
+    { slug: "ropa-interior", nombre: "Ropa interior", imagen: "img/productos/boxer-hombre-1.jpg", subcategorias: [
       { slug: "boxers", nombre: "Bóxers" }
     ]},
-    { slug: "pantalones", nombre: "Pantalones", imagen: "", subcategorias: [
+    { slug: "pantalones", nombre: "Pantalones", imagen: "img/productos/calza-oxford-1.jpg", subcategorias: [
       { slug: "joggers", nombre: "Joggers" },
       { slug: "calzas",  nombre: "Calzas" },
       { slug: "shorts",  nombre: "Shorts" }
     ]},
-    { slug: "accesorios", nombre: "Accesorios", imagen: "", subcategorias: [
+    { slug: "accesorios", nombre: "Accesorios", imagen: "img/productos/gorro-unisex-1.jpg", subcategorias: [
       { slug: "medias", nombre: "Medias y soquetes" },
       { slug: "gorras", nombre: "Gorras y viseras" }
     ]}
