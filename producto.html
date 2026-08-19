@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Producto · LUZ Indumentaria Unisex</title>
+  <meta name="description" content="Detalle del producto: talles, colores, materiales y guía de medidas.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="img/marca/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#principal">Saltar al contenido</a>
+  <div id="header"></div>
+
+  <main id="principal" class="contenedor">
+    <nav class="miga" id="miga" aria-label="Ubicación"></nav>
+    <div id="ficha"></div>
+
+    <section class="seccion" id="seccionRelacionados" hidden>
+      <div class="seccion__cabecera">
+        <div>
+          <p class="antetitulo">Te puede gustar</p>
+          <h2 class="titulo-seccion">Productos relacionados</h2>
+        </div>
+      </div>
+      <div class="grilla-productos" id="relacionados"></div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <div id="carrito"></div>
+
+  <script src="data/config.js"></script>
+  <script src="data/productos.js"></script>
+  <script src="js/tienda.js"></script>
+  <script src="js/producto.js"></script>
+</body>
+</html>

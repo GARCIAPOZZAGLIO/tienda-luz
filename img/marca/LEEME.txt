@@ -1,0 +1,66 @@
+LOGO Y MARCA — LUZ INDUMENTARIA UNISEX
+======================================
+
+⚠️ IMPORTANTE: el logo que está en esta carpeta es una RECREACIÓN provisoria.
+
+El logo original (el que mandó Ivan) no se pudo copiar al proyecto porque llegó
+como imagen en el chat y no como archivo. Lo que hay acá es una versión hecha a
+mano en el mismo estilo (corona + guirnalda de laureles + "LUZ" en dorado) para
+que la web se vea terminada mientras tanto.
+
+
+CÓMO PONER EL LOGO DE VERDAD (30 segundos)
+------------------------------------------
+1. Tomá tu archivo original del logo.
+2. Renombralo a:   logo.png
+3. Pegalo en esta carpeta (img/marca/), reemplazando el que está.
+4. Listo. No hay que tocar ni una línea de código.
+
+El header y el pie de página lo toman automáticamente.
+
+
+ARCHIVOS DE ESTA CARPETA
+------------------------
+logo.png          El que usa la web (header y pie). ← ESTE es el que reemplazás
+logo.svg          La versión vectorial de la recreación (por si sirve de base)
+logo-header.png   Versión chica, por si querés una distinta para el header
+favicon.svg       Ícono de la pestaña del navegador (monograma con corona)
+
+
+RECOMENDACIONES PARA EL ARCHIVO DEL LOGO
+----------------------------------------
+Formato       .png con FONDO TRANSPARENTE (ideal) o fondo blanco
+Tamaño        900 x 900 px o más
+Peso          menos de 300 KB
+Recorte       sin márgenes blancos de sobra alrededor del dibujo
+
+El margen es lo más importante: si el PNG tiene mucho blanco alrededor, en el
+header el logo se ve chiquito y perdido. Recortalo bien pegado al dibujo.
+
+
+AJUSTAR EL TAMAÑO EN LA WEB
+---------------------------
+En data/config.js, dentro del bloque "marca":
+
+    logo: "img/marca/logo.png",
+    logoAltoHeader: 62,     ← alto en píxeles dentro del header
+    logoAltoFooter: 96,     ← alto en píxeles en el pie de página
+
+Si tu logo es más ancho que alto, bajá esos números.
+Si es cuadrado como el actual, dejalos como están.
+
+
+SI EL ARCHIVO NO EXISTE
+-----------------------
+La web no se rompe: muestra automáticamente el nombre "LUZ Indumentaria Unisex"
+en texto dorado. Podés probarlo renombrando logo.png y recargando la página.
+
+
+OTRAS IMÁGENES DE MARCA QUE CONVIENE TENER
+------------------------------------------
+og.jpg          1200 x 630 px. Es la imagen que se ve cuando alguien comparte
+                el link de la tienda por WhatsApp o Instagram.
+                Por ahora se usa logo.png, que funciona pero queda cuadrada.
+
+favicon.ico     Algunos navegadores viejos lo piden. El .svg alcanza para
+                Chrome, Safari, Firefox y Edge actuales.

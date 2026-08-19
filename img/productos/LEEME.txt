@@ -1,0 +1,48 @@
+CÓMO CARGAR LAS FOTOS DE PRODUCTO
+=================================
+
+1) Guardá las imágenes en esta carpeta (img/productos/).
+
+2) Nombre de archivo recomendado — usá el ID del producto en minúscula:
+
+     rem-001-1.jpg   ← foto principal
+     rem-001-2.jpg   ← foto que aparece al pasar el mouse
+     rem-001-3.jpg   ← extras para la galería de la ficha
+     buz-004-1.jpg
+     ...
+
+3) Abrí data/productos.js, buscá el producto por su "id" y completá el
+   campo "imagenes":
+
+     "id": "REM-001",
+     "imagenes": ["img/productos/rem-001-1.jpg", "img/productos/rem-001-2.jpg"],
+
+   Mientras el array quede vacío ([]), la tienda muestra un marco gris que
+   dice "Foto pendiente" con el código del producto. No se rompe nada.
+
+
+ESPECIFICACIONES TÉCNICAS
+-------------------------
+Proporción      3:4 vertical (ej. 1200 x 1600 px)
+Formato         .webp (ideal) o .jpg
+Peso            menos de 250 KB por foto
+Fondo           liso y siempre el mismo en todo el catálogo
+Encuadre        prenda centrada, mismo margen en todas las fotos
+
+Consejo: sacá TODAS las fotos con la misma luz y a la misma distancia.
+Es lo que más diferencia una tienda profesional de una amateur.
+
+Para comprimir sin perder calidad: squoosh.app (gratis, en el navegador).
+
+
+OTRAS IMÁGENES QUE VAN A HACER FALTA
+------------------------------------
+img/banners/hero.jpg        Foto grande del inicio (horizontal, 2000x1200 aprox.)
+                            Después poné la ruta en data/config.js → home.heroImagen
+
+img/banners/remeras.jpg     Foto de cada categoría (vertical 3:4)
+img/banners/buzos.jpg       Se cargan en data/config.js → categorias[].imagen
+...
+
+img/marca/og.jpg            Imagen que se ve al compartir el link (1200x630)
+img/marca/favicon.svg       Ícono de la pestaña (ya hay uno provisorio)

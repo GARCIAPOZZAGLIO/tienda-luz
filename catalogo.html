@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo · LUZ Indumentaria Unisex</title>
+  <meta name="description" content="Catálogo completo de ropa unisex por mayor y por menor: remeras, buzos, camisas, pantalones, abrigos y accesorios.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="img/marca/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#principal">Saltar al contenido</a>
+  <div id="header"></div>
+
+  <main id="principal" class="contenedor">
+    <nav class="miga" id="miga" aria-label="Ubicación"></nav>
+
+    <div style="margin-bottom:1.5rem">
+      <h1 class="titulo-seccion" id="tituloCatalogo">Catálogo</h1>
+      <p style="color:var(--c-tinta-suave);font-size:var(--t-sm)" id="subtituloCatalogo"></p>
+    </div>
+
+    <div class="catalogo">
+
+      <!-- ================= FILTROS ================= -->
+      <aside class="filtros" id="filtros" data-abierto="false" aria-label="Filtros">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <strong style="letter-spacing:.1em;text-transform:uppercase;font-size:var(--t-sm)">Filtrar</strong>
+          <button id="limpiarFiltros" style="font-size:var(--t-xs);text-decoration:underline;color:var(--c-gris)">Limpiar todo</button>
+        </div>
+
+        <div class="filtros__grupo" data-abierto="true">
+          <button class="filtros__titulo">Sección <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="filtros__cuerpo"><ul class="arbol-cat" id="filtroGeneros"></ul></div>
+        </div>
+
+        <div class="filtros__grupo" data-abierto="true">
+          <button class="filtros__titulo">Categorías <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="filtros__cuerpo"><ul class="arbol-cat" id="arbolCategorias"></ul></div>
+        </div>
+
+        <div class="filtros__grupo" data-abierto="true">
+          <button class="filtros__titulo">Talle <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="filtros__cuerpo"><div class="chips-talle" id="filtroTalles"></div></div>
+        </div>
+
+        <div class="filtros__grupo" data-abierto="true">
+          <button class="filtros__titulo">Color <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="filtros__cuerpo"><div class="colores-filtro" id="filtroColores"></div></div>
+        </div>
+
+        <div class="filtros__grupo" data-abierto="true">
+          <button class="filtros__titulo">Precio máximo <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="filtros__cuerpo">
+            <input type="range" class="rango" id="filtroPrecio" min="0" max="100" value="100" aria-label="Precio máximo">
+            <div class="rango-valores"><span id="precioMin"></span><span id="precioMax"></span></div>
+          </div>
+        </div>
+
+        <div class="filtros__grupo" data-abierto="true">
+          <button class="filtros__titulo">Otros <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="filtros__cuerpo">
+            <label class="check"><input type="checkbox" id="soloOferta"> En oferta</label>
+            <label class="check"><input type="checkbox" id="soloNuevo"> Novedades</label>
+            <label class="check"><input type="checkbox" id="soloStock" checked> Solo con stock</label>
+            <label class="check"><input type="checkbox" id="soloFav"> Mis favoritos</label>
+          </div>
+        </div>
+
+        <button class="btn btn--principal btn--bloque" id="cerrarFiltros" style="margin-top:1.5rem;display:none">Ver resultados</button>
+      </aside>
+
+      <!-- ================= RESULTADOS ================= -->
+      <div>
+        <div class="barra-resultados">
+          <span class="barra-resultados__conteo" id="conteo"></span>
+          <div class="buscador">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input type="search" id="busqueda" placeholder="Buscar por nombre o código..." aria-label="Buscar">
+          </div>
+          <select class="select" id="orden" aria-label="Ordenar por">
+            <option value="destacados">Destacados</option>
+            <option value="nuevos">Más nuevos primero</option>
+            <option value="viejos">Más antiguos primero</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="nombre-az">Nombre: A-Z</option>
+            <option value="nombre-za">Nombre: Z-A</option>
+            <option value="descuento">Mayor descuento</option>
+          </select>
+          <button class="btn btn--linea btn--chico btn-filtros-movil" id="abrirFiltros">Filtros</button>
+        </div>
+
+        <div class="tags-activos" id="tagsActivos"></div>
+        <div class="grilla-productos" id="grilla"></div>
+
+        <div class="cargar-mas" id="cargarMas" hidden>
+          <div class="barra-progreso"><span id="progreso"></span></div>
+          <p class="cargar-mas__texto" id="textoProgreso"></p>
+          <button class="btn btn--principal" id="btnCargarMas">Mostrar más productos</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="velo" id="veloFiltros" data-abierto="false"></div>
+  <div id="footer"></div>
+  <div id="carrito"></div>
+
+  <script src="data/config.js"></script>
+  <script src="data/productos.js"></script>
+  <script src="js/tienda.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+</html>

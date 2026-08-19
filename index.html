@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LUZ · Indumentaria Unisex por mayor y por menor</title>
+  <meta name="description" content="Indumentaria unisex por mayor y por menor. Ingresos nuevos todas las semanas y envíos a todo el país.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LUZ · Indumentaria Unisex">
+  <meta property="og:description" content="Indumentaria unisex para todos los cuerpos. Envíos a todo el país.">
+  <meta property="og:image" content="img/marca/logo.png">
+  <link rel="icon" href="img/marca/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#principal">Saltar al contenido</a>
+  <div id="header"></div>
+
+  <main id="principal">
+
+    <!-- ================= SLIDER DE BANNERS ================= -->
+    <section class="slider" id="slider" aria-roledescription="carrusel" aria-label="Promociones">
+      <div class="slider__pista" id="sliderPista"></div>
+      <button class="slider__flecha slider__flecha--prev" id="sliderPrev" aria-label="Anterior"></button>
+      <button class="slider__flecha slider__flecha--next" id="sliderNext" aria-label="Siguiente"></button>
+      <div class="slider__puntos" id="sliderPuntos"></div>
+    </section>
+
+    <!-- ================= CONDICIONES DE COMPRA ================= -->
+    <section class="condiciones" id="condiciones"></section>
+
+    <!-- ================= BENEFICIOS ================= -->
+    <div class="contenedor">
+      <div class="beneficios" id="beneficios"></div>
+    </div>
+
+    <!-- ================= SECCIONES: MUJER / HOMBRE / OFERTAS ============ -->
+    <section class="seccion seccion--compacta">
+      <div class="contenedor">
+        <div class="grilla-secciones" id="grillaSecciones"></div>
+      </div>
+    </section>
+
+    <!-- ================= CATEGORÍAS ================= -->
+    <section class="seccion seccion--alt">
+      <div class="contenedor">
+        <div class="titulo-centrado"><h2 class="titulo-seccion">Categorías</h2></div>
+        <div class="grilla-categorias" id="grillaCategorias"></div>
+      </div>
+    </section>
+
+    <!-- ================= SECCIONES DE PRODUCTOS (se generan solas) ======= -->
+    <div id="seccionesProductos"></div>
+
+    <!-- ================= MEDIOS DE PAGO ================= -->
+    <section class="seccion seccion--alt" id="seccionPagos">
+      <div class="contenedor">
+        <div class="titulo-centrado"><h2 class="titulo-seccion">Medios de pago</h2></div>
+        <div id="bloquePagos"></div>
+        <div id="bloqueCuentas" style="margin-top:2.5rem"></div>
+      </div>
+    </section>
+
+    <!-- ================= DÓNDE ESTAMOS ================= -->
+    <section class="seccion" id="seccionLocal" hidden>
+      <div class="contenedor">
+        <div class="titulo-centrado"><h2 class="titulo-seccion">Dónde estamos</h2></div>
+        <div class="local" id="bloqueLocal"></div>
+      </div>
+    </section>
+
+    <!-- ================= BLOQUE MAYORISTA ================= -->
+    <section class="seccion seccion--alt" id="bloqueMayorista">
+      <div class="contenedor centrado" style="max-width:720px">
+        <p class="antetitulo">Revendedores</p>
+        <h2 class="titulo-seccion" style="margin-bottom:1rem">Comprá por mayor</h2>
+        <p style="color:var(--c-tinta-suave);font-size:var(--t-md)" id="textoMayorista"></p>
+        <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+          <a class="btn btn--principal" href="catalogo.html?modo=mayorista">Ver precios por mayor</a>
+          <a class="btn btn--linea" href="info.html?tema=mayorista">Cómo comprar por mayor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEGUINOS EN REDES ================= -->
+    <section class="seccion seccion--alt" id="seccionRedes" hidden>
+      <div class="contenedor">
+        <div class="titulo-centrado">
+          <h2 class="titulo-seccion">Seguinos</h2>
+          <p style="color:var(--c-tinta-suave);margin-top:.5rem">
+            Los ingresos nuevos salen primero por acá
+          </p>
+        </div>
+        <div id="bloqueRedes"></div>
+      </div>
+    </section>
+
+    <!-- ================= CÓMO COMPRAR ================= -->
+    <section class="seccion" id="seccionComoComprar">
+      <div class="contenedor">
+        <div class="titulo-centrado">
+          <h2 class="titulo-seccion">Cómo comprar</h2>
+        </div>
+        <div id="bloqueComoComprar"></div>
+      </div>
+    </section>
+
+    <!-- ================= CÓMO FUNCIONAN LOS ENVÍOS ================= -->
+    <section class="seccion seccion--alt" id="seccionEnvios">
+      <div class="contenedor">
+        <div class="titulo-centrado">
+          <h2 class="titulo-seccion">¿Cómo funcionan los envíos? 📦</h2>
+        </div>
+        <div id="bloqueEnvios"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+  <div id="carrito"></div>
+
+  <script src="data/config.js"></script>
+  <script src="data/productos.js"></script>
+  <script src="js/tienda.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

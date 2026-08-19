@@ -1,0 +1,15 @@
+IMÁGENES DE BANNER
+==================
+
+hero.jpg          Foto principal del inicio.
+                  Horizontal, 2000 x 1200 px aprox. Menos de 400 KB.
+                  Después indicá la ruta en data/config.js:
+                      home: { heroImagen: "img/banners/hero.jpg" }
+
+remeras.jpg       Una foto por categoría, vertical 3:4 (900 x 1200 px).
+buzos.jpg         Se cargan en data/config.js:
+camisas.jpg           categorias: [{ slug: "remeras", nombre: "Remeras",
+pantalones.jpg                        imagen: "img/banners/remeras.jpg" }, ...]
+camperas.jpg
+shorts.jpg        Mientras estén vacías, las tarjetas de categoría muestran
+accesorios.jpg    un degradé oscuro con el nombre. Se ve bien igual.

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 190" width="560" height="190" role="img" aria-label="LUZ Indumentaria Unisex">
+  <title>LUZ · Indumentaria Unisex</title>
+  <defs>
+    <linearGradient id="gradTexto" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#E8C86A"/>
+      <stop offset="42%"  stop-color="#C9A227"/>
+      <stop offset="62%"  stop-color="#F1DCA0"/>
+      <stop offset="100%" stop-color="#9A7B18"/>
+    </linearGradient>
+    <linearGradient id="gradCorona" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%"   stop-color="#F3DFA4"/>
+      <stop offset="45%"  stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#9A7B18"/>
+    </linearGradient>
+    <linearGradient id="gradHoja" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#E8C86A"/>
+      <stop offset="100%" stop-color="#9A7B18"/>
+    </linearGradient>
+  </defs>
+
+  
+<g transform="translate(80 96) scale(0.62)">
+  <path d="M-84 42 L-84 6 L-52 30 L-26 -14 L0 -34 L26 -14 L52 30 L84 6 L84 42 Z"
+        fill="url(#gradCorona)" stroke="#7A5F10" stroke-width="2.6" stroke-linejoin="round"/>
+  <rect x="-90" y="42" width="180" height="26" rx="7"
+        fill="url(#gradCorona)" stroke="#7A5F10" stroke-width="2.6"/>
+  <circle cx="-84" cy="2" r="8" fill="#E8C86A" stroke="#7A5F10" stroke-width="2"/>
+  <circle cx="84"  cy="2" r="8" fill="#E8C86A" stroke="#7A5F10" stroke-width="2"/>
+  <path d="M0 -34 C-9 -46 -9 -58 0 -68 C9 -58 9 -46 0 -34 Z"
+        fill="#E8C86A" stroke="#7A5F10" stroke-width="2"/>
+  <circle cx="0" cy="-74" r="6" fill="#E8C86A" stroke="#7A5F10" stroke-width="1.8"/>
+</g>
+
+  <text x="300" y="118" text-anchor="middle"
+        font-family="'Cormorant Garamond', 'Bodoni Moda', Georgia, serif"
+        font-size="104" font-weight="700" letter-spacing="8"
+        fill="url(#gradTexto)">LUZ</text>
+
+  <text x="300" y="152" text-anchor="middle"
+        font-family="'Jost', 'Inter', Helvetica, Arial, sans-serif"
+        font-size="20" font-weight="400" letter-spacing="5.5"
+        fill="#C9A227">INDUMENTARIA UNISEX</text>
+</svg>

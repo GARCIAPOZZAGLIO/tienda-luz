@@ -1,0 +1,134 @@
+CÓMO PUBLICAR LA WEB PARA QUE LA VEAN DESDE CUALQUIER CELULAR
+=============================================================
+
+Objetivo: tener un link tipo   https://luz-indumentaria.netlify.app
+que mandás por WhatsApp y se abre como una web de verdad.
+Gratis, sin tarjeta, en 2 minutos.
+
+
+=============================================================
+OPCIÓN A · LA MÁS FÁCIL (arrastrar el .zip)
+=============================================================
+
+En tu Escritorio te dejé el archivo:
+
+      LUZ-web-para-publicar.zip
+
+Ese archivo YA está armado para publicar. No lo descomprimas.
+
+1. Entrá desde la computadora a:
+
+       app.netlify.com/drop
+
+2. Vas a ver un recuadro grande punteado que dice
+   "Drag and drop your site output folder here".
+
+3. Arrastrá el archivo  LUZ-web-para-publicar.zip  adentro del recuadro.
+   (O tocá el recuadro y buscalo en el Escritorio.)
+
+4. Esperá unos 20 o 30 segundos. Cuando termina te muestra arriba
+   un link tipo:
+
+       https://sparkly-donut-a1b2c3.netlify.app
+
+5. Ese link ya está en internet. Copialo y mandalo por WhatsApp.
+   Se abre en cualquier celular, sin instalar nada.
+
+
+=============================================================
+OPCIÓN B · arrastrando la carpeta
+=============================================================
+
+Igual que arriba, pero en el paso 3 arrastrás la carpeta
+LUZ-Indumentaria-Web ENTERA (no los archivos sueltos).
+
+⚠️ ERROR MÁS COMÚN: arrastrar solo el index.html.
+   Si hacés eso, la web se ve toda blanca y sin diseño, porque
+   el estilo y el código están en las subcarpetas css/ y js/.
+   Hay que arrastrar la CARPETA COMPLETA o el .zip.
+
+
+=============================================================
+⚠️ PASO 6 · RECLAMAR EL SITIO (¡DENTRO DE LA PRIMERA HORA!)
+=============================================================
+
+Apenas se publica, Netlify muestra un cartel que dice
+"Make this project yours" con un contador regresivo.
+
+   EL SITIO SE BORRA SOLO EN 1 HORA SI NO LO RECLAMÁS.
+
+Tocá el botón   "Claim this site"   y creá la cuenta gratis
+(con Google o con tu email). No pide tarjeta.
+
+Una vez reclamado, el sitio queda tuyo y online para siempre.
+
+
+=============================================================
+PARA QUE EL LINK SEA LINDO
+=============================================================
+
+Ya con la cuenta creada:
+
+  · Entrá a   Site configuration  →  Change site name
+  · Escribí:  luz-indumentaria
+  · Te queda: https://luz-indumentaria.netlify.app
+
+Ese link ya no se vence y es el mismo para siempre.
+
+
+=============================================================
+CÓMO ACTUALIZARLA DESPUÉS
+=============================================================
+
+Cada vez que cambien fotos, precios o textos:
+
+  1. Entrás a tu sitio en Netlify
+  2. Pestaña "Deploys"
+  3. Arrastrás la carpeta (o el zip nuevo) al recuadro de abajo
+
+En 30 segundos el link muestra la versión nueva. El link NO cambia:
+la dueña abre el mismo de siempre y ve lo último.
+
+Ojo: no es automático. Si cambiás un archivo en tu computadora,
+el link sigue mostrando lo anterior hasta que vuelvas a subirlo.
+
+
+=============================================================
+QUÉ ESCRIBIRLE A LA DUEÑA AL MANDARLE EL LINK
+=============================================================
+
+Copiá y pegá esto:
+
+  "Hola! Te paso cómo va quedando la web de LUZ:
+   [pegar el link acá]
+
+   Se abre en el celular como una tienda de verdad. Ya anda el
+   carrito, los precios por mayor y por menor, los medios de pago
+   con el CVU, el mapa del local y el pedido por WhatsApp.
+
+   Los productos todavía no están cargados, por eso las secciones
+   dicen 'Muy pronto'. Apenas tengamos las fotos con precios y
+   stock, se llena y queda lista."
+
+
+=============================================================
+OTRAS OPCIONES, TODAS GRATIS
+=============================================================
+
+  · vercel.com/new         → parecido a Netlify
+  · tiiny.host             → la más simple, se sube un .zip
+  · pages.cloudflare.com   → gratis, un poco más técnico
+  · GitHub Pages           → gratis para siempre, pide saber GitHub
+
+Cualquiera te da un link público que funciona en todos los celulares.
+
+
+=============================================================
+DOMINIO PROPIO (más adelante)
+=============================================================
+
+Cuando la tienda salga en serio se le puede poner
+luzindumentaria.com.ar en lugar del link de Netlify.
+
+El dominio .com.ar se saca en nic.ar y tiene un costo anual bajo.
+El hosting en Netlify sigue siendo gratis. Se conecta en 10 minutos.
