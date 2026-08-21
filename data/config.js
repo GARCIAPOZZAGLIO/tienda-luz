@@ -75,7 +75,7 @@ window.CONFIG = {
        mostrarAmbosPrecios true = en modo minorista se ve también el precio por mayor
      -------------------------------------------------------------------- */
   mayorista: {
-    activo: true,
+    activo: false,
     modoPorDefecto: "minorista",
     unidadesMinimas: 3,
     compraMinima: 100000,          // pedido mínimo por mayor
@@ -212,19 +212,12 @@ window.CONFIG = {
     {
       antetitulo: "Temporada 2026",
       titulo: "Nueva colección unisex",
-      bajada: "Básicos de calidad para todos los cuerpos. Por mayor y por menor.",
+      bajada: "Básicos de calidad para todos los cuerpos.",
       textoBoton: "Ver catálogo",
       link: "catalogo.html",
       imagen: ""
     },
-    {
-      antetitulo: "Precios por mayor",
-      titulo: "Comprá desde 3 unidades",
-      bajada: "El descuento mayorista se aplica solo, sin trámites ni registro.",
-      textoBoton: "Ver precios por mayor",
-      link: "catalogo.html?modo=mayorista",
-      imagen: ""
-    },
+    /* Sección mayorista desactivada por ahora */
     {
       antetitulo: "Ofertas imperdibles",
       titulo: "Hasta 40% off",

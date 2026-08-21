@@ -1264,6 +1264,7 @@
       </div>
       <a class="btn btn--acento btn--bloque ${Carrito.puedeCerrar() ? "" : "btn--bloqueado"}"
          href="pedido.html" ${Carrito.puedeCerrar() ? "" : 'aria-disabled="true"'}>Finalizar pedido</a>
+      <button class="btn btn--linea btn--bloque" id="btnSeguirComprando" style="margin-top:.5rem">Seguir comprando</button>
       <p class="nota-envio">${Carrito.envioACargoDelComprador()
         ? "El costo del envío lo abona el comprador. Lo coordinamos por WhatsApp."
         : "Envío calculado según el monto de tu compra."}</p>
@@ -1272,6 +1273,13 @@
     $$("[data-mas]", cuerpo).forEach((b) => b.addEventListener("click", () => Carrito.cambiarCantidad(b.dataset.mas, 1)));
     $$("[data-menos]", cuerpo).forEach((b) => b.addEventListener("click", () => Carrito.cambiarCantidad(b.dataset.menos, -1)));
     $$("[data-quitar]", cuerpo).forEach((b) => b.addEventListener("click", () => { Carrito.quitar(b.dataset.quitar); aviso("Producto eliminado"); }));
+    const btnSeguir = $("#btnSeguirComprando");
+    if (btnSeguir) btnSeguir.addEventListener("click", () => {
+      const panel = $("#panelCarrito"), velo = $("#veloCarrito");
+      if (panel) panel.dataset.abierto = "false";
+      if (velo) velo.dataset.abierto = "false";
+      document.body.style.overflow = "";
+    });
   }
 
   function actualizarBurbujas() {
@@ -1343,7 +1351,7 @@
 
     if (fotos.length < 2) {
       return `<a href="producto.html?id=${esc(p.id)}">
-                <img class="es-principal" src="${esc(fotos[0])}" alt="${esc(p.nombre)}" loading="lazy"
+                <img class="es-principal" src="${esc(fotos[0])}" alt="${esc(p.nombre)}" loading="lazy" decoding="async"
                      onerror="marcarSinFoto(this, '${esc(p.codigo)}')">
               </a>`;
     }
@@ -1352,16 +1360,16 @@
        para cualquier producto con varias fotos. */
     if (p.carrusel === false) {
       return `<a href="producto.html?id=${esc(p.id)}">
-                <img class="es-principal" src="${esc(fotos[0])}" alt="${esc(p.nombre)}" loading="lazy"
+                <img class="es-principal" src="${esc(fotos[0])}" alt="${esc(p.nombre)}" loading="lazy" decoding="async"
                      onerror="marcarSinFoto(this, '${esc(p.codigo)}')">
-                <img class="es-hover" src="${esc(fotos[1])}" alt="" loading="lazy" onerror="this.remove()">
+                <img class="es-hover" src="${esc(fotos[1])}" alt="" loading="lazy" decoding="async" onerror="this.remove()">
               </a>`;
     }
 
     const slides = fotos.map((f, i) => `
       <a class="carrusel__slide" href="producto.html?id=${esc(p.id)}" tabindex="${i ? -1 : 0}">
         <img src="${esc(f)}" alt="${esc(p.nombre)} — foto ${i + 1} de ${fotos.length}"
-             loading="lazy" ${i === 0 ? `onerror="marcarSinFoto(this, '${esc(p.codigo)}')"` : 'onerror="this.closest(\'.carrusel__slide\').remove()"'}>
+             loading="lazy" decoding="async" ${i === 0 ? `onerror="marcarSinFoto(this, '${esc(p.codigo)}')"` : 'onerror="this.closest(\'.carrusel__slide\').remove()"'}>
       </a>`).join("");
 
     const puntos = fotos.map((_, i) =>
@@ -1382,67 +1390,87 @@
 
   /* Hace funcionar las flechas, los puntitos y el contador. El deslizamiento
      con el dedo lo resuelve el navegador solo (overflow-x + scroll-snap). */
+  /* Inicializa un carrusel individual: flechas, puntos, arrastre */
+  function _initCarrusel(car) {
+    if (car.dataset.listo) return;
+    car.dataset.listo = "1";
+
+    const pista = car.querySelector(".carrusel__pista");
+    const puntos = $$(".carrusel__punto", car);
+    const izq = car.querySelector(".carrusel__flecha--izq");
+    const der = car.querySelector(".carrusel__flecha--der");
+    const cont = car.querySelector(".carrusel__contador b");
+    const total = () => pista.children.length;
+
+    const indice = () => {
+      const ancho = pista.clientWidth || 1;
+      return Math.min(total() - 1, Math.max(0, Math.round(pista.scrollLeft / ancho)));
+    };
+
+    function refrescar() {
+      const i = indice();
+      puntos.forEach((b, n) => b.setAttribute("aria-current", n === i));
+      if (cont) cont.textContent = i + 1;
+      if (izq) izq.hidden = i === 0;
+      if (der) der.hidden = i >= total() - 1;
+      Array.from(pista.children).forEach((s, n) => {
+        s.setAttribute("tabindex", n === i ? 0 : -1);
+      });
+    }
+
+    function irA(i) {
+      pista.scrollTo({ left: pista.clientWidth * i, behavior: "smooth" });
+    }
+
+    $$("[data-mover]", car).forEach((b) => {
+      b.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        irA(indice() + Number(b.dataset.mover));
+      });
+    });
+
+    puntos.forEach((b) => {
+      b.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        irA(Number(b.dataset.ir));
+      });
+    });
+
+    let t = null;
+    pista.addEventListener("scroll", () => {
+      clearTimeout(t);
+      t = setTimeout(refrescar, 90);
+    }, { passive: true });
+
+    /* Si el usuario arrastró, el click no debe abrir la ficha del producto */
+    let x0 = null, arrastro = false;
+    pista.addEventListener("pointerdown", (e) => { x0 = e.clientX; arrastro = false; });
+    pista.addEventListener("pointermove", (e) => {
+      if (x0 !== null && Math.abs(e.clientX - x0) > 8) arrastro = true;
+    });
+    pista.addEventListener("click", (e) => { if (arrastro) e.preventDefault(); }, true);
+
+    refrescar();
+  }
+
+  /* Activa los carruseles de forma diferida: solo cuando entran en pantalla.
+     Esto evita registrar decenas de listeners al cargar la página. */
+  const _carruselObserver = ("IntersectionObserver" in window)
+    ? new IntersectionObserver((entries, obs) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            _initCarrusel(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: "200px" })
+    : null;
+
   function activarCarruseles(ctx = document) {
     $$("[data-carrusel]", ctx).forEach((car) => {
       if (car.dataset.listo) return;
-      car.dataset.listo = "1";
-
-      const pista = car.querySelector(".carrusel__pista");
-      const puntos = $$(".carrusel__punto", car);
-      const izq = car.querySelector(".carrusel__flecha--izq");
-      const der = car.querySelector(".carrusel__flecha--der");
-      const cont = car.querySelector(".carrusel__contador b");
-      const total = () => pista.children.length;
-
-      const indice = () => {
-        const ancho = pista.clientWidth || 1;
-        return Math.min(total() - 1, Math.max(0, Math.round(pista.scrollLeft / ancho)));
-      };
-
-      function refrescar() {
-        const i = indice();
-        puntos.forEach((b, n) => b.setAttribute("aria-current", n === i));
-        if (cont) cont.textContent = i + 1;
-        if (izq) izq.hidden = i === 0;
-        if (der) der.hidden = i >= total() - 1;
-        Array.from(pista.children).forEach((s, n) => {
-          s.setAttribute("tabindex", n === i ? 0 : -1);
-        });
-      }
-
-      function irA(i) {
-        pista.scrollTo({ left: pista.clientWidth * i, behavior: "smooth" });
-      }
-
-      $$("[data-mover]", car).forEach((b) => {
-        b.addEventListener("click", (e) => {
-          e.preventDefault(); e.stopPropagation();
-          irA(indice() + Number(b.dataset.mover));
-        });
-      });
-
-      puntos.forEach((b) => {
-        b.addEventListener("click", (e) => {
-          e.preventDefault(); e.stopPropagation();
-          irA(Number(b.dataset.ir));
-        });
-      });
-
-      let t = null;
-      pista.addEventListener("scroll", () => {
-        clearTimeout(t);
-        t = setTimeout(refrescar, 90);
-      }, { passive: true });
-
-      /* Si el usuario arrastró, el click no debe abrir la ficha del producto */
-      let x0 = null, arrastro = false;
-      pista.addEventListener("pointerdown", (e) => { x0 = e.clientX; arrastro = false; });
-      pista.addEventListener("pointermove", (e) => {
-        if (x0 !== null && Math.abs(e.clientX - x0) > 8) arrastro = true;
-      });
-      pista.addEventListener("click", (e) => { if (arrastro) e.preventDefault(); }, true);
-
-      refrescar();
+      if (_carruselObserver) _carruselObserver.observe(car);
+      else _initCarrusel(car);
     });
   }
 
