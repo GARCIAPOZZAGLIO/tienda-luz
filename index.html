@@ -14,52 +14,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilos.css?v=6">
-  <!-- FIX SCROLL: overrides críticos inline para que funcionen aunque el CSS esté cacheado -->
+  <link rel="stylesheet" href="css/estilos.css?v=8">
+  <!-- FIX SCROLL v8: inline overrides para forzar que apliquen aunque el CSS esté cacheado -->
   <style>
-    /* Desactivar transition:all — causa #1 del scroll trabado */
-    .carrito-btn,
-    .modo-precio button,
-    .submenu,
-    .submenu a,
-    .slider__puntos button,
-    .chip-talle,
-    .selector-talles button,
-    .calc-envio,
-    .info__menu a,
-    .btn-copiar,
-    .redes a,
+    /* 1. Desactivar transiciones que no sean de interacción directa */
+    .carrito-btn, .modo-precio button, .submenu, .submenu a,
+    .slider__puntos button, .chip-talle, .selector-talles button,
+    .calc-envio, .info__menu a, .btn-copiar, .redes a,
     .red-card { transition: none !important; }
-
-    /* Reactivar solo las transiciones necesarias al interactuar */
     .carrito-btn:hover, .carrito-btn:focus-visible,
-    .modo-precio button:hover, .modo-precio button:focus-visible,
-    .submenu.--abierto,
-    .submenu a:hover,
-    .slider__puntos button:hover,
-    .chip-talle:hover, .chip-talle.--activo,
+    .modo-precio button:hover, .submenu.--abierto, .submenu a:hover,
+    .slider__puntos button:hover, .chip-talle:hover, .chip-talle.--activo,
     .selector-talles button:hover, .selector-talles button.--activo,
-    .calc-envio:hover, .calc-envio:focus-within,
-    .info__menu a:hover,
-    .btn-copiar:hover,
-    .redes a:hover,
-    .red-card:hover { transition: all .22s ease !important; }
+    .calc-envio:hover, .info__menu a:hover, .btn-copiar:hover,
+    .redes a:hover, .red-card:hover { transition: all .22s ease !important; }
 
-    /* Quitar compositing layer innecesario */
-    .carrusel__pista { -webkit-overflow-scrolling: auto !important; }
-
-    /* Saltar renderizado de secciones fuera de pantalla — enorme ganancia */
+    /* 2. Secciones fuera de pantalla: no renderizar */
     .seccion, #seccionPagos, #seccionLocal, #bloqueMayorista,
     #seccionRedes, #seccionComoComprar, #seccionEnvios {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 500px;
+      content-visibility: auto; contain-intrinsic-size: auto 500px;
     }
-
-    /* Aislar tarjetas de producto para que no afecten layout global */
     .producto { contain: layout style paint; }
-
-    /* Imágenes de producto: tamaño fijo para evitar reflow */
     .producto__media img { will-change: auto !important; }
+
+    /* 3. FIX LOGO: los logos usan opacity en vez de display para no causar layout thrash */
+    .logo__img--compacto { opacity: 0 !important; position: absolute !important; pointer-events: none !important; }
+    .logo__img--emblema  { opacity: 1 !important; }
+    .header--compacto .logo__img--emblema  { opacity: 0 !important; position: absolute !important; pointer-events: none !important; }
+    .header--compacto .logo__img--compacto { opacity: 1 !important; position: static !important; pointer-events: auto !important; }
+    .logo { position: relative !important; }
+
+    /* 4. Quitar compositing layers innecesarios */
+    .carrusel__pista { -webkit-overflow-scrolling: auto !important; }
   </style>
 </head>
 <body>
@@ -170,9 +156,9 @@
   <div id="footer"></div>
   <div id="carrito"></div>
 
-  <script src="data/config.js?v=6"></script>
-  <script src="data/productos.js?v=6"></script>
-  <script src="js/tienda.js?v=6"></script>
-  <script src="js/home.js?v=6"></script>
+  <script src="data/config.js?v=8"></script>
+  <script src="data/productos.js?v=8"></script>
+  <script src="js/tienda.js?v=8"></script>
+  <script src="js/home.js?v=8"></script>
 </body>
 </html>
