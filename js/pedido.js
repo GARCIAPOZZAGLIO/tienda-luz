@@ -315,6 +315,17 @@
     });
   }
 
+  /* ----------------------------------------- Mostrar datos de pago en el checkout */
+  const cajaPago = $("#datosPago");
+  if (cajaPago && PAGO.cuentas && PAGO.cuentas.length) {
+    cajaPago.innerHTML = `
+      <h3 class="opcion__label" style="margin-bottom:.75rem">Datos para pagar</h3>
+      <p style="font-size:var(--t-sm);color:var(--c-tinta-suave);margin-bottom:1rem">
+        Transferí a cualquiera de estas cuentas y mandanos el comprobante por WhatsApp.</p>
+      ${bloqueCuentas()}`;
+    activarCopiar(cajaPago);
+  }
+
   document.addEventListener("carrito:cambio", pintarResumen);
   document.addEventListener("modo:cambio", pintarResumen);
   alternarEntrega();
