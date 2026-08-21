@@ -274,7 +274,8 @@ ul, ol { list-style: none; padding: 0; }
   position: sticky; top: 0; z-index: 100;
   background: var(--c-fondo);
   border-bottom: 1px solid var(--c-linea);
-  transform: translateZ(0);        /* capa GPU propia: evita repintar todo al hacer scroll */
+  /* SIN transform:translateZ(0) — forzaba una capa GPU con el logo de 1800px
+     y el navegador tenía que recomponer esa capa en cada frame del scroll */
 }
 
 .header__superior {
@@ -299,18 +300,23 @@ ul, ol { list-style: none; padding: 0; }
 .header--logo-centrado .logo { justify-self: center; margin-right: 0; }
 
 .logo--centrado { flex-direction: column; }
-.logo__img--compacto { display: none; }
 
-/* Al bajar, el emblema se cambia por la versión horizontal, más chica */
-.header--compacto .logo__img--emblema { display: none; }
-.header--compacto .logo__img--compacto { display: block; }
+/* FIX SCROLL: los logos usan opacity en vez de display:none/block.
+   display:none/block fuerza recalcular el layout de TODA la página
+   en cada cruce del umbral de scroll. opacity solo cambia la capa
+   de pintura, sin mover nada de sitio. */
+.logo__img--compacto { opacity: 0; position: absolute; pointer-events: none; }
+.logo__img--emblema  { opacity: 1; }
+
+.header--compacto .logo__img--emblema  { opacity: 0; position: absolute; pointer-events: none; }
+.header--compacto .logo__img--compacto { opacity: 1; position: static; pointer-events: auto; }
 .header--compacto .header__superior { padding-block: var(--e-2); }
-/* Sin transición de height: animar height causa layout thrash y traba el scroll */
 
 .logo {
   display: flex; align-items: center;
   margin-right: auto; color: var(--c-tinta);
   line-height: 1; flex: none;
+  position: relative; /* para que los logos con position:absolute queden dentro */
 }
 .logo__img { width: auto; object-fit: contain; }
 /* Si el archivo del logo trae fondo blanco, "multiply" lo funde con el fondo
