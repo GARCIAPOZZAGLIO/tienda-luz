@@ -112,7 +112,7 @@ window.CONFIG = {
     calculadora: {
       texto: "Calculá tu envío",
       detalle: "Consultá la tarifa oficial de Correo Argentino según el peso y el destino",
-      link: "https://www.correoargentino.com.ar/servicios/paqueteria/encomienda-correo-clasica"
+      link: "https://correoargentinopro.com/blog/cotizar-envio-correo-argentino.html"
     }
   },
 
