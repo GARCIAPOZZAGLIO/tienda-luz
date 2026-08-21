@@ -14,7 +14,53 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/estilos.css?v=6">
+  <!-- FIX SCROLL: overrides críticos inline para que funcionen aunque el CSS esté cacheado -->
+  <style>
+    /* Desactivar transition:all — causa #1 del scroll trabado */
+    .carrito-btn,
+    .modo-precio button,
+    .submenu,
+    .submenu a,
+    .slider__puntos button,
+    .chip-talle,
+    .selector-talles button,
+    .calc-envio,
+    .info__menu a,
+    .btn-copiar,
+    .redes a,
+    .red-card { transition: none !important; }
+
+    /* Reactivar solo las transiciones necesarias al interactuar */
+    .carrito-btn:hover, .carrito-btn:focus-visible,
+    .modo-precio button:hover, .modo-precio button:focus-visible,
+    .submenu.--abierto,
+    .submenu a:hover,
+    .slider__puntos button:hover,
+    .chip-talle:hover, .chip-talle.--activo,
+    .selector-talles button:hover, .selector-talles button.--activo,
+    .calc-envio:hover, .calc-envio:focus-within,
+    .info__menu a:hover,
+    .btn-copiar:hover,
+    .redes a:hover,
+    .red-card:hover { transition: all .22s ease !important; }
+
+    /* Quitar compositing layer innecesario */
+    .carrusel__pista { -webkit-overflow-scrolling: auto !important; }
+
+    /* Saltar renderizado de secciones fuera de pantalla — enorme ganancia */
+    .seccion, #seccionPagos, #seccionLocal, #bloqueMayorista,
+    #seccionRedes, #seccionComoComprar, #seccionEnvios {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 500px;
+    }
+
+    /* Aislar tarjetas de producto para que no afecten layout global */
+    .producto { contain: layout style paint; }
+
+    /* Imágenes de producto: tamaño fijo para evitar reflow */
+    .producto__media img { will-change: auto !important; }
+  </style>
 </head>
 <body>
   <a class="salto-contenido" href="#principal">Saltar al contenido</a>
@@ -124,9 +170,9 @@
   <div id="footer"></div>
   <div id="carrito"></div>
 
-  <script src="data/config.js"></script>
-  <script src="data/productos.js"></script>
-  <script src="js/tienda.js"></script>
-  <script src="js/home.js"></script>
+  <script src="data/config.js?v=6"></script>
+  <script src="data/productos.js?v=6"></script>
+  <script src="js/tienda.js?v=6"></script>
+  <script src="js/home.js?v=6"></script>
 </body>
 </html>

@@ -1657,6 +1657,49 @@
   }
 
   /* ------------------------------------------------------------- Arranque */
+  /* ========== ANTI-JANK: desactivar pointer-events al hacer scroll =========
+     Mientras el usuario scrollea, el cursor pasa por encima de tarjetas
+     y dispara :hover → box-shadow/transform que el navegador tiene que
+     repintar en cada frame.  Con pointer-events:none esos hovers no se
+     activan y el scroll queda fluido.  150 ms después de dejar de scrollear
+     se reactivan los clics y hovers normalmente. */
+  (function antiJank() {
+    let ticking = false;
+    const cls = "scroll-activo";
+    /* Inyectar la regla CSS una sola vez */
+    const hoja = document.createElement("style");
+    hoja.textContent =
+      "body." + cls + " .producto," +
+      "body." + cls + " .seccion-card," +
+      "body." + cls + " .red-card," +
+      "body." + cls + " .pago-item," +
+      "body." + cls + " .cat-card," +
+      "body." + cls + " .beneficio," +
+      "body." + cls + " .condicion," +
+      "body." + cls + " .slider__flecha," +
+      "body." + cls + " .wsp-flotante" +
+      "{ pointer-events:none !important; }" +
+      /* content-visibility para secciones lejanas */
+      ".seccion,.seccion--alt,#seccionPagos,#seccionRedes," +
+      "#seccionComoComprar,#seccionEnvios,#bloqueMayorista" +
+      "{ content-visibility:auto; contain-intrinsic-size:auto 500px; }" +
+      ".producto{ contain:layout style paint; }";
+    document.head.appendChild(hoja);
+
+    let timer;
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        document.body.classList.add(cls);
+        ticking = true;
+      }
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        document.body.classList.remove(cls);
+        ticking = false;
+      }, 150);
+    }, { passive: true });
+  })();
+
   function iniciar(pagina) {
     montarHeader(pagina);
     montarFooter();

@@ -536,7 +536,7 @@ ul, ol { list-style: none; padding: 0; }
   transition: box-shadow var(--trans), border-color var(--trans);
 }
 .seccion-card:hover { box-shadow: var(--sombra-md); border-color: var(--c-oro); }
-.seccion-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--trans-lento); }
+.seccion-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .seccion-card:hover img { transform: scale(1.05); }
 .seccion-card::after {
   content: ""; position: absolute; inset: 0;
@@ -568,7 +568,7 @@ ul, ol { list-style: none; padding: 0; }
   border-radius: var(--r-md); background: var(--c-fondo-alt);
   display: flex; align-items: flex-end; border: 1px solid var(--c-linea);
 }
-.cat-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--trans-lento); }
+.cat-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cat-card:hover img { transform: scale(1.06); }
 .cat-card::after {
   content: ""; position: absolute; inset: 0;
