@@ -60,10 +60,6 @@
 
       ${bloqueComoEnviamos()}
 
-      <h2 style="margin-top:3rem">Otros transportes</h2>
-      <p>Además de Correo Argentino y Vía Cargo, también despachamos por:</p>
-      <ul>${E.transportes.filter((t) => !/correo argentino|vía cargo/i.test(t))
-              .map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
       <p>La demora estimada por Correo Argentino es de <strong>${esc(E.demoraEstandar)}</strong>
          desde que se despacha.</p>
       <h2>Costo del envío</h2>
@@ -76,10 +72,8 @@
          Ahí podés estimar cuánto te va a salir antes de hacer el pedido.</p>
       <ul>
         <li>Cuando confirmamos tu pedido por WhatsApp te pasamos el costo del envío
-            según el transporte que elijas y la localidad de destino.</li>
-        <li>En Correo Argentino y Andreani el envío se abona al despachar o al recibir,
-            según la modalidad.</li>
-        <li>Los envíos por transporte de cargo se abonan al retirar en la terminal.</li>
+            según la localidad de destino.</li>
+        <li>El envío se abona al despachar o al recibir, según la modalidad.</li>
         <li><strong>${esc(E.textoRetiro)}</strong> en ${esc(C.direccion)}: si retirás por
             el local, no pagás envío.</li>
       </ul>
@@ -89,8 +83,7 @@
          (${esc(C.horarios.toLowerCase())}), sale ese mismo día.</p>
 
       <h2>Seguimiento</h2>
-      <p>Apenas despachamos te mandamos el número de seguimiento por WhatsApp.
-         Los envíos por transporte de cargo se abonan al retirar en la terminal.</p>`,
+      <p>Apenas despachamos te mandamos el número de seguimiento por WhatsApp.</p>`,
 
     "medios-pago": `
       <h1>Medios de pago</h1>

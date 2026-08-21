@@ -570,15 +570,14 @@
       <p class="envios-intro">
         En <strong>${esc(CFG.marca.nombre)} ${esc(CFG.marca.nombreAcento)}</strong> sabemos que
         cuando comprás mercadería para tu negocio querés que te llegue rápido, segura y al mejor
-        costo posible. Por eso hacemos envíos a todo el país con las empresas más confiables
-        del mercado. Manejamos <strong>dos modalidades</strong>: elegí la que mejor te venga
-        según tu zona.
+        costo posible. Por eso hacemos envíos a todo el país por <strong>Correo Argentino</strong>,
+        con seguimiento y entrega a domicilio o a sucursal.
       </p>
 
       <div class="envios-opciones">
         <article class="envio-op">
           <span class="envio-op__icono">${ICO.camion}</span>
-          <h3>Opción 1 · Correo Argentino</h3>
+          <h3>Correo Argentino</h3>
           <p class="envio-op__bajada">A domicilio o a sucursal</p>
           <dl>
             <dt>¿Cómo se calcula el costo?</dt>
@@ -596,22 +595,6 @@
              target="_blank" rel="noopener">Ver tarifas de Correo Argentino</a>` : ""}
         </article>
 
-        <article class="envio-op">
-          <span class="envio-op__icono">${ICO.local}</span>
-          <h3>Opción 2 · Vía Cargo</h3>
-          <p class="envio-op__bajada">A terminal de micros o agencia</p>
-          <dl>
-            <dt>¿Cómo se calcula el costo?</dt>
-            <dd>Lo cotiza <strong>directamente Vía Cargo</strong> al momento de despachar,
-                según el peso y el tamaño de la caja.</dd>
-            <dt>¿Cómo se paga?</dt>
-            <dd>El transporte lo abonás <strong>en destino</strong>, cuando retirás el paquete
-                de la terminal o agencia de tu localidad.
-                <em>A nosotros solo nos pagás el valor de la ropa.</em></dd>
-            <dt>Ideal si…</dt>
-            <dd>Ya trabajás con transportes o preferís abonar el envío más adelante.</dd>
-          </dl>
-        </article>
       </div>
 
       <div class="envios-extra">
@@ -640,8 +623,7 @@
 
       <div class="envios-cierre">
         <p>¿Listo para recibir tus prendas ${esc(CFG.marca.nombre)}?</p>
-        <p class="envios-cierre__sub">Armá tu pedido y consultá la tarifa de Correo Argentino,
-           o elegí Vía Cargo para pagar el envío al recibir.
+        <p class="envios-cierre__sub">Armá tu pedido y consultá la tarifa de Correo Argentino.
            Hacer crecer tu negocio nunca fue tan fácil.</p>
         <a class="btn btn--acento" href="catalogo.html">👉 Armar mi pedido</a>
       </div>`;
