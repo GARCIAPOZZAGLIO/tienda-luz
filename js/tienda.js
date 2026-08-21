@@ -1008,17 +1008,26 @@
       if (alto > 0) document.documentElement.style.setProperty("--alto-header", alto + "px");
     }
 
-    /* Al bajar la página, el header se encoge para no tapar el contenido */
+    /* Al bajar la página, el header se encoge para no tapar el contenido.
+       Usamos requestAnimationFrame para no bloquear el hilo principal
+       durante el scroll y evitar que la página se trabe. */
     if (CFG.marca.logoCentrado) {
       const umbral = 90;
       let ultimo = null;
+      let rafPendiente = false;
       const revisar = () => {
-        const compacto = window.scrollY > umbral;
-        if (compacto !== ultimo) {
-          cab.classList.toggle("header--compacto", compacto);
-          ultimo = compacto;
-          setTimeout(medirHeader, 260);   // después de la animación
-        }
+        if (rafPendiente) return;
+        rafPendiente = true;
+        requestAnimationFrame(() => {
+          rafPendiente = false;
+          const compacto = window.scrollY > umbral;
+          if (compacto !== ultimo) {
+            cab.classList.toggle("header--compacto", compacto);
+            ultimo = compacto;
+            /* Medir después de que el navegador pinte el cambio */
+            requestAnimationFrame(medirHeader);
+          }
+        });
       };
       window.addEventListener("scroll", revisar, { passive: true });
       revisar();
@@ -1315,7 +1324,7 @@
     return `
       <div class="precios">
         <span class="precio">${precio(pAct)}</span>
-        ${!Modo.esMayorista() && p.precioAnterior
+        ${!Modo.esMayorista() && p.precioAnterior && desc > 0
           ? `<span class="precio--tachado">${precio(p.precioAnterior)}</span>
              <span class="precio--desc">${desc}% OFF</span>` : ""}
       </div>
