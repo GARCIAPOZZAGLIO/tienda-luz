@@ -999,18 +999,15 @@
 
     const cab = $("#cabecera");
 
-    /* Publicamos el alto real del header en --alto-header.
-       Así los elementos que quedan fijos (filtros del catálogo, ficha de
-       producto, resumen del pedido) se ubican siempre justo debajo,
-       sin importar el tamaño del logo ni la pantalla. */
+    /* FIX SCROLL: medirHeader usa getBoundingClientRect que fuerza un
+       "forced synchronous layout" — el navegador tiene que recalcular
+       el layout de toda la página ANTES de devolver el número.
+       Ahora solo se mide en resize/load, NUNCA durante scroll. */
     function medirHeader() {
       const alto = Math.round(cab.getBoundingClientRect().height);
       if (alto > 0) document.documentElement.style.setProperty("--alto-header", alto + "px");
     }
 
-    /* Al bajar la página, el header se encoge para no tapar el contenido.
-       Usamos requestAnimationFrame para no bloquear el hilo principal
-       durante el scroll y evitar que la página se trabe. */
     if (CFG.marca.logoCentrado) {
       const umbral = 90;
       let ultimo = null;
@@ -1024,8 +1021,9 @@
           if (compacto !== ultimo) {
             cab.classList.toggle("header--compacto", compacto);
             ultimo = compacto;
-            /* Medir después de que el navegador pinte el cambio */
-            requestAnimationFrame(medirHeader);
+            /* YA NO llamamos medirHeader acá — los logos ahora usan
+               opacity en vez de display:none/block, así que el header
+               no cambia de alto y no hace falta re-medir */
           }
         });
       };
