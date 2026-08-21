@@ -305,10 +305,10 @@ window.CONFIG = {
   /* --- Secciones destacadas del inicio ----------------------------------
      Cada bloque arma una grilla filtrando el catálogo.                   */
   seccionesHome: [
-    { titulo: "Últimos ingresos",   tipo: "nuevos", cantidad: 10, link: "catalogo.html?orden=nuevos" },
-    { titulo: "Ropa de mujer",      tipo: "genero", valor: "mujer",  cantidad: 10, link: "catalogo.html?genero=mujer" },
-    { titulo: "Ropa de hombre",     tipo: "genero", valor: "hombre", cantidad: 10, link: "catalogo.html?genero=hombre" },
-    { titulo: "Ofertas",            tipo: "oferta", cantidad: 10, link: "catalogo.html?oferta=1" }
+    { titulo: "Últimos ingresos",   tipo: "nuevos", cantidad: 6, link: "catalogo.html?orden=nuevos" },
+    { titulo: "Ropa de mujer",      tipo: "genero", valor: "mujer",  cantidad: 6, link: "catalogo.html?genero=mujer" },
+    { titulo: "Ropa de hombre",     tipo: "genero", valor: "hombre", cantidad: 6, link: "catalogo.html?genero=hombre" },
+    { titulo: "Ofertas",            tipo: "oferta", cantidad: 6, link: "catalogo.html?oferta=1" }
   ],
 
   /* --- Paleta de colores disponible -------------------------------------- */

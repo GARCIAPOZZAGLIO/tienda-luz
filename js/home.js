@@ -188,35 +188,70 @@
     destacados: "Estamos cargando el catálogo. Muy pronto vas a ver acá las prendas destacadas."
   };
 
+  /* Versión de tarjetaProducto SIN carrusel para el home.
+     Fuerza el modo hover (2 imágenes) en vez de scroll horizontal,
+     eliminando contenedores scroll anidados y cientos de listeners. */
+  function tarjetaHome(p) {
+    const orig = p.carrusel;
+    p.carrusel = false;
+    const html = tarjetaProducto(p);
+    p.carrusel = orig;
+    return html;
+  }
+
+  /* Renderiza el contenido de UNA sección de productos */
+  function renderizarSeccion(wrapper, sec) {
+    if (wrapper.dataset.renderizado) return;
+    wrapper.dataset.renderizado = "1";
+
+    const vacio = !hayCatalogo();
+    const items = vacio ? [] : seleccionar(sec);
+    if (!items.length && !vacio) { wrapper.closest("section").hidden = true; return; }
+
+    const cuerpo = items.length
+      ? `<div class="grilla-productos">${items.map(tarjetaHome).join("")}</div>
+         <p class="centrado" style="margin-top:2.5rem">
+           <a class="btn btn--linea" href="${esc(sec.link || "catalogo.html")}">Ver todos</a>
+         </p>`
+      : bloqueProximamente(AVISOS_VACIO[sec.tipo] || AVISOS_VACIO.destacados);
+
+    wrapper.innerHTML = cuerpo;
+    activarTarjetas(wrapper);
+  }
+
   function montarSecciones() {
     const cont = $("#seccionesProductos");
-    const vacio = !hayCatalogo();
+    const secciones = CFG.seccionesHome || [];
 
-    const html = (CFG.seccionesHome || []).map((sec, i) => {
-      const items = vacio ? [] : seleccionar(sec);
+    /* Generar solo los contenedores vacíos con los títulos */
+    cont.innerHTML = secciones.map((sec, i) => `
+      <section class="seccion ${i % 2 === 1 ? "seccion--alt" : ""}" data-sec-idx="${i}">
+        <div class="contenedor">
+          <div class="titulo-centrado"><h2 class="titulo-seccion">${esc(sec.titulo)}</h2></div>
+          <div class="sec-productos-lazy" data-sec-idx="${i}" style="min-height:200px"></div>
+        </div>
+      </section>`).join("");
 
-      /* Con catálogo cargado, una sección sin resultados no se muestra.
-         Sin catálogo, se muestra el título con el cartel de "muy pronto". */
-      if (!items.length && !vacio) return "";
+    /* Renderizar la primera sección de inmediato (está visible) */
+    const wrappers = $$(".sec-productos-lazy", cont);
+    if (wrappers.length) renderizarSeccion(wrappers[0], secciones[0]);
 
-      const cuerpo = items.length
-        ? `<div class="grilla-productos">${items.map(tarjetaProducto).join("")}</div>
-           <p class="centrado" style="margin-top:2.5rem">
-             <a class="btn btn--linea" href="${esc(sec.link || "catalogo.html")}">Ver todos</a>
-           </p>`
-        : bloqueProximamente(AVISOS_VACIO[sec.tipo] || AVISOS_VACIO.destacados);
+    /* Las demás se renderizan al acercarse al viewport */
+    if ("IntersectionObserver" in window && wrappers.length > 1) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const idx = Number(entry.target.dataset.secIdx);
+          renderizarSeccion(entry.target, secciones[idx]);
+          obs.unobserve(entry.target);
+        });
+      }, { rootMargin: "200px 0px" });
 
-      return `
-        <section class="seccion ${i % 2 === 1 ? "seccion--alt" : ""}">
-          <div class="contenedor">
-            <div class="titulo-centrado"><h2 class="titulo-seccion">${esc(sec.titulo)}</h2></div>
-            ${cuerpo}
-          </div>
-        </section>`;
-    }).join("");
-
-    cont.innerHTML = html;
-    activarTarjetas(cont);
+      wrappers.forEach((w, i) => { if (i > 0) obs.observe(w); });
+    } else {
+      /* Fallback sin IntersectionObserver */
+      wrappers.forEach((w, i) => { if (i > 0) renderizarSeccion(w, secciones[i]); });
+    }
   }
 
   /* ================================================ BLOQUE MAYORISTA ====== */
@@ -313,6 +348,10 @@
   $("#bloqueEnvios").innerHTML = bloqueComoEnviamos();
   montarMayorista();
 
-  /* Al cambiar de minorista a mayorista se repintan los precios */
-  document.addEventListener("modo:cambio", montarSecciones);
+  /* Al cambiar de minorista a mayorista se repintan los precios.
+     Forzamos re-renderizado limpiando el flag de cada sección. */
+  document.addEventListener("modo:cambio", () => {
+    $$(".sec-productos-lazy").forEach((w) => delete w.dataset.renderizado);
+    montarSecciones();
+  });
 })();
