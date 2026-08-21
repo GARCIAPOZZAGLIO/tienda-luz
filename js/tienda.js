@@ -1453,24 +1453,10 @@
     refrescar();
   }
 
-  /* Activa los carruseles de forma diferida: solo cuando entran en pantalla.
-     Esto evita registrar decenas de listeners al cargar la página. */
-  const _carruselObserver = ("IntersectionObserver" in window)
-    ? new IntersectionObserver((entries, obs) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            _initCarrusel(e.target);
-            obs.unobserve(e.target);
-          }
-        });
-      }, { rootMargin: "200px" })
-    : null;
-
   function activarCarruseles(ctx = document) {
     $$("[data-carrusel]", ctx).forEach((car) => {
       if (car.dataset.listo) return;
-      if (_carruselObserver) _carruselObserver.observe(car);
-      else _initCarrusel(car);
+      _initCarrusel(car);
     });
   }
 
@@ -1480,8 +1466,9 @@
     /* "detalles" es una lista de líneas que se muestran tal cual debajo del
        nombre. Ej: ["Talle: 2", "Color: negro"]. Manda sobre todo lo demás. */
     if (p.detalles && p.detalles.length) {
+      const arr = Array.isArray(p.detalles) ? p.detalles : [p.detalles];
       return `<div class="producto__talles">
-        ${p.detalles.map((d) => `<span>${esc(d)}</span>`).join("")}
+        ${arr.map((d) => `<span>${esc(d)}</span>`).join("")}
       </div>`;
     }
 

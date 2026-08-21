@@ -1325,7 +1325,7 @@ window.PRODUCTOS = [
       "img/productos/jean-gris-oferta-3.jpg",
       "img/productos/jean-gris-oferta-4.jpg"
     ],
-    "detalles": "Jean wide leg de mujer · Gris oscuro y gris con franjas laterales · $25.000 c/u o 2x $40.000",
+    "detalles": ["Jean wide leg de mujer", "Gris oscuro y gris con franjas laterales", "$25.000 c/u o 2x $40.000"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-20",
@@ -1352,7 +1352,7 @@ window.PRODUCTOS = [
     "imagenes": [
       "img/productos/conjunto-celeste-oferta-1.jpg"
     ],
-    "detalles": "Conjunto short celeste + remera · Short talles 1 y 3 · Remera talle único · Conjunto $14.000",
+    "detalles": ["Conjunto short celeste + remera", "Short talles 1 y 3", "Remera talle único", "Conjunto $14.000"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-20",
@@ -1379,7 +1379,7 @@ window.PRODUCTOS = [
     "imagenes": [
       "img/productos/conjunto-rosa-oferta-1.jpg"
     ],
-    "detalles": "Conjunto short rosa + remera · Short talles 1 y 2 · Remera talle único · Conjunto $14.000",
+    "detalles": ["Conjunto short rosa + remera", "Short talles 1 y 2", "Remera talle único", "Conjunto $14.000"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-20",
@@ -1406,7 +1406,7 @@ window.PRODUCTOS = [
     "imagenes": [
       "img/productos/conjunto-amarillo-oferta-1.jpg"
     ],
-    "detalles": "Conjunto short amarillo + remera · Short talle 2 · Remera talle único · Conjunto $14.000",
+    "detalles": ["Conjunto short amarillo + remera", "Short talle 2", "Remera talle único", "Conjunto $14.000"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-20",
@@ -1434,7 +1434,7 @@ window.PRODUCTOS = [
       "img/productos/remera-brooklyn-oferta-1.jpg",
       "img/productos/remera-brooklyn-oferta-2.jpg"
     ],
-    "detalles": "Remera Brooklyn 1998 · $6.000 c/u o 2x $10.000 · Talle único · 7 colores disponibles",
+    "detalles": ["Remera Brooklyn 1998", "$6.000 c/u o 2x $10.000", "Talle único", "7 colores disponibles"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-20",
@@ -1458,7 +1458,7 @@ window.PRODUCTOS = [
     "talles": ["unico"],
     "stock": { "unico": 4 },
     "imagenes": ["img/productos/gorra-jordan-oferta-1.jpg", "img/productos/gorra-jordan-oferta-2.jpg"],
-    "detalles": "Gorra Nike bordada · $25.000 c/u o 2x $40.000 · Talle único · Dos modelos",
+    "detalles": ["Gorra Nike bordada", "$25.000 c/u o 2x $40.000", "Talle único", "Dos modelos"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-21",
@@ -1482,7 +1482,7 @@ window.PRODUCTOS = [
     "talles": ["unico"],
     "stock": { "unico": 4 },
     "imagenes": ["img/productos/gorra-jordan-bordada-1.jpg"],
-    "detalles": "Gorra Jordan bordada · $20.000 c/u o 2x $35.000 · Colores: gris y negro",
+    "detalles": ["Gorra Jordan bordada", "$20.000 c/u o 2x $35.000", "Colores: gris y negro"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-21",
@@ -1506,7 +1506,7 @@ window.PRODUCTOS = [
     "talles": ["3", "4", "5", "7"],
     "stock": { "3": 2, "4": 2, "5": 2, "7": 2 },
     "imagenes": ["img/productos/pantalon-veranito-oferta-1.jpg"],
-    "detalles": "Pantalón de veranito · $15.000 c/u o 2x $25.000 · 4 colores · Talles 3, 4, 5 y 7",
+    "detalles": ["Pantalón de veranito", "$15.000 c/u o 2x $25.000", "4 colores", "Talles 3, 4, 5 y 7"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-08-21",

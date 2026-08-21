@@ -113,7 +113,7 @@ ul, ol { list-style: none; padding: 0; }
   margin-inline: auto; padding-inline: var(--pad-lateral);
 }
 
-.seccion { padding-block: clamp(2.5rem, 6vw, 5rem); content-visibility: auto; contain-intrinsic-size: auto 600px; }
+.seccion { padding-block: clamp(2.5rem, 6vw, 5rem); }
 .seccion--alt { background: var(--c-fondo-alt); }
 .seccion--compacta { padding-block: clamp(1.75rem, 4vw, 3rem); }
 
@@ -275,7 +275,6 @@ ul, ol { list-style: none; padding: 0; }
   position: sticky; top: 0; z-index: 100;
   background: var(--c-fondo);
   border-bottom: 1px solid var(--c-linea);
-  will-change: transform;
 }
 
 .header__superior {
@@ -596,7 +595,6 @@ ul, ol { list-style: none; padding: 0; }
   border: 1px solid var(--c-linea); border-radius: var(--r-md);
   padding: var(--e-3); background: var(--c-fondo);
   transition: box-shadow var(--trans), border-color var(--trans);
-  contain: layout style paint;
 }
 .producto:hover { box-shadow: var(--sombra-md); border-color: var(--c-oro); }
 
