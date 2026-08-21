@@ -104,7 +104,7 @@ window.CONFIG = {
     textoRetiro: "Retiro en el local sin cargo",
     demoraEstandar: "3 a 6 días",
     despacho: "Despachamos todos los días por Correo Argentino",
-    transportes: ["Correo Argentino", "Andreani", "Vía Cargo", "Transporte propio"],
+    transportes: ["Correo Argentino"],
 
     /* Link donde el cliente consulta cuánto le sale el envío.
        Es la tabla oficial de Correo Argentino (Encomienda Clásica):
