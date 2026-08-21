@@ -17,7 +17,7 @@ window.CONFIG = {
     logo: "img/marca/logo.png",                 // emblema completo: header, pie y al compartir
     logoHeader: "img/marca/logo-horizontal.png",// versión horizontal, solo para el header encogido
     logoCentrado: true,             // true = logo grande y centrado arriba
-    logoAltoHeader: 220,            // alto del logo grande, en píxeles
+    logoAltoHeader: 80,             // reducido de 220 — logo enorme trababa el scroll
     logoAltoCompacto: 46,           // alto al que se encoge cuando bajás la página
     logoAltoFooter: 120,            // alto del logo en el pie de página
     slogan: "Indumentaria unisex por mayor y por menor",
