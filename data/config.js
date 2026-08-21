@@ -46,7 +46,7 @@ window.CONFIG = {
     localidad: "Ingeniero Pablo Nogués",
     provincia: "Provincia de Buenos Aires",
     mapaConsulta: "Boyle 1549, Ingeniero Pablo Nogués, Buenos Aires, Argentina",
-    mostrarMapaEnInicio: true
+    mostrarMapaEnInicio: false
   },
 
   /* --- Redes ------------------------------------------------------------
