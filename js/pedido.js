@@ -280,17 +280,29 @@
     panel.hidden = false;
     activarCopiar(panel);
     conectarComprobante(datos, msjPagado);
-    conectarMercadoPago(datos);
+    conectarMercadoPago("#btnPagarTarjeta", "#errorMP");
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   /* ----------------------------------------- Pago con tarjeta (Mercado Pago) */
-  async function conectarMercadoPago(datos) {
-    const btn = $("#btnPagarTarjeta");
-    const errorEl = $("#errorMP");
+
+  /* Lee los datos del formulario en el momento del clic (pueden estar vacíos) */
+  function datosDelFormulario() {
+    if (!form) return { nombre: "", telefono: "", email: "" };
+    return {
+      nombre:   form.nombre   ? form.nombre.value.trim()   : "",
+      telefono: form.telefono ? form.telefono.value.trim() : "",
+      email:    form.email    ? form.email.value.trim()    : ""
+    };
+  }
+
+  async function conectarMercadoPago(btnSel, errSel) {
+    const btn = $(btnSel);
+    const errorEl = $(errSel);
     if (!btn) return;
 
     btn.addEventListener("click", async () => {
+      const datos = datosDelFormulario();
       btn.disabled = true;
       btn.textContent = "Conectando con Mercado Pago…";
       errorEl.style.display = "none";
@@ -315,7 +327,7 @@
           body: JSON.stringify({
             items: items,
             payer: payer,
-            external_reference: datos.nombre + " — " + datos.telefono
+            external_reference: (datos.nombre + " — " + datos.telefono).replace(/^ — $/, "") || "Pedido web"
           })
         });
 
@@ -392,17 +404,38 @@
 
   /* ----------------------------------------- Mostrar datos de pago en el checkout */
   const cajaPago = $("#datosPago");
-  if (cajaPago && PAGO.cuentas && PAGO.cuentas.length) {
-    cajaPago.innerHTML = `
-      <h3 class="opcion__label" style="margin-bottom:.75rem">Datos para pagar</h3>
-      <p style="font-size:var(--t-sm);color:var(--c-tinta-suave);margin-bottom:1rem">
-        Transferí a cualquiera de estas cuentas y mandanos el comprobante por WhatsApp.</p>
-      ${bloqueCuentas()}`;
-    activarCopiar(cajaPago);
-  }
+  function pintarDatosPago() {
+    if (!cajaPago) return;
 
-  document.addEventListener("carrito:cambio", pintarResumen);
-  document.addEventListener("modo:cambio", pintarResumen);
+    cajaPago.innerHTML = `
+      <h3 class="opcion__label" style="margin-bottom:.75rem">Elegí cómo pagar</h3>
+
+      <!-- ============ PAGAR CON TARJETA (Mercado Pago) ============ -->
+      <div style="margin-bottom:1.25rem;padding:1.25rem;border:2px solid var(--c-acento, #007bff);border-radius:8px;background:var(--c-fondo-alt, #f8f9fa)">
+        <h4 style="margin:0 0 .5rem;font-size:var(--t-base)">Tarjeta de crédito o débito</h4>
+        <p style="font-size:var(--t-sm);color:var(--c-tinta-suave);margin:0 0 1rem">
+          Pagás de forma segura a través de Mercado Pago. Aceptamos todas las tarjetas
+          y hasta ${CFG.cuotas.cantidad} cuotas.</p>
+        <button class="btn btn--principal" type="button" id="btnPagarTarjetaLateral"
+                style="width:100%;font-size:var(--t-base)">
+          Pagar con tarjeta · ${precio(Carrito.subtotal())}
+        </button>
+        <p id="errorMPLateral" style="color:#c0392b;font-size:var(--t-xs);margin:.5rem 0 0;display:none"></p>
+      </div>
+
+      <!-- ============ TRANSFERENCIA ============ -->
+      ${PAGO.cuentas && PAGO.cuentas.length ? `
+      <p style="font-size:var(--t-sm);color:var(--c-tinta-suave);margin-bottom:1rem">
+        O transferí a cualquiera de estas cuentas y mandanos el comprobante por WhatsApp.</p>
+      ${bloqueCuentas()}` : ""}`;
+
+    activarCopiar(cajaPago);
+    conectarMercadoPago("#btnPagarTarjetaLateral", "#errorMPLateral");
+  }
+  pintarDatosPago();
+
+  document.addEventListener("carrito:cambio", () => { pintarResumen(); pintarDatosPago(); });
+  document.addEventListener("modo:cambio", () => { pintarResumen(); pintarDatosPago(); });
   alternarEntrega();
   pintarResumen();
 })();
