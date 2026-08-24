@@ -216,10 +216,31 @@
       </div>
 
       <h2>Paso 2 de 2 · Pagá para reservar</h2>
-      <p>Transferí <strong>${total}</strong> a una de estas cuentas.
+      <p>Elegí cómo pagar <strong>${total}</strong>.
          La mercadería queda reservada 24 h.</p>
 
-      ${PAGO.cuentas && PAGO.cuentas.length ? bloqueCuentas() : ""}
+      <!-- ============ PAGAR CON TARJETA (Mercado Pago) ============ -->
+      <div style="margin-bottom:1.5rem;padding:1.25rem;border:2px solid var(--c-acento, #007bff);border-radius:8px;background:var(--c-fondo-alt, #f8f9fa)">
+        <h3 style="margin:0 0 .5rem;font-size:var(--t-base)">Pagar con tarjeta de crédito o débito</h3>
+        <p style="font-size:var(--t-sm);color:var(--c-tinta-suave);margin:0 0 1rem">
+          Pagás de forma segura a través de Mercado Pago. Aceptamos todas las tarjetas y hasta
+          ${CFG.cuotas.cantidad} cuotas.</p>
+        <button class="btn btn--principal" type="button" id="btnPagarTarjeta"
+                style="width:100%;font-size:var(--t-base)">
+          Pagar con tarjeta · ${total}
+        </button>
+        <p id="errorMP" style="color:#c0392b;font-size:var(--t-xs);margin:.5rem 0 0;display:none"></p>
+      </div>
+
+      <!-- ============ TRANSFERENCIA (existente) ============ -->
+      <details style="margin-bottom:1.5rem">
+        <summary style="cursor:pointer;font-weight:600;font-size:var(--t-base);padding:.75rem 0">
+          O transferí a nuestras cuentas
+        </summary>
+        <div style="padding-top:.5rem">
+          ${PAGO.cuentas && PAGO.cuentas.length ? bloqueCuentas() : ""}
+        </div>
+      </details>
 
       <!-- Enviar el pedido con fotos + el comprobante -->
       <div class="enviar-comprobante">
@@ -259,7 +280,61 @@
     panel.hidden = false;
     activarCopiar(panel);
     conectarComprobante(datos, msjPagado);
+    conectarMercadoPago(datos);
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* ----------------------------------------- Pago con tarjeta (Mercado Pago) */
+  async function conectarMercadoPago(datos) {
+    const btn = $("#btnPagarTarjeta");
+    const errorEl = $("#errorMP");
+    if (!btn) return;
+
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      btn.textContent = "Conectando con Mercado Pago…";
+      errorEl.style.display = "none";
+
+      /* Armar los items en el formato que espera la API */
+      const items = Carrito.items.map((i) => ({
+        title:       i.nombre + " — Talle " + i.talle + " — " + colorPorSlug(i.color).nombre,
+        description: "Código " + (i.codigo || i.id),
+        quantity:    i.cantidad,
+        unit_price:  i.precio
+      }));
+
+      const payer = {};
+      if (datos.nombre) payer.name = datos.nombre.split(" ")[0];
+      if (datos.nombre) payer.surname = datos.nombre.split(" ").slice(1).join(" ") || "";
+      if (datos.email)  payer.email = datos.email;
+
+      try {
+        const resp = await fetch("/api/crear-preferencia", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: items,
+            payer: payer,
+            external_reference: datos.nombre + " — " + datos.telefono
+          })
+        });
+
+        const data = await resp.json();
+
+        if (!resp.ok) {
+          throw new Error(data.error || "Error al conectar con Mercado Pago");
+        }
+
+        /* Redirigir al checkout de Mercado Pago */
+        window.location.href = data.init_point;
+
+      } catch (err) {
+        errorEl.textContent = err.message || "No se pudo conectar con Mercado Pago. Probá de nuevo o pagá por transferencia.";
+        errorEl.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "Pagar con tarjeta · " + precio(Carrito.subtotal());
+      }
+    });
   }
 
   /* ------------------------------------- Envío del pedido con fotos ----- */
