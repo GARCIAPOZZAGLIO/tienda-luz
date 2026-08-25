@@ -1607,8 +1607,19 @@
     modal.innerHTML = `
       <div class="modal-pago">
         <button class="modal-pago__cerrar" type="button" aria-label="Cerrar">&times;</button>
-        <h3 class="modal-pago__titulo">Datos de pago</h3>
+        <h3 class="modal-pago__titulo">Elegí cómo pagar</h3>
         <p class="modal-pago__producto"><strong>${esc(p.nombre)}</strong> — ${precio(precioMostrar)}</p>
+
+        <div style="margin:0 0 1.25rem;padding:1rem;border:2px solid var(--c-acento, #007bff);border-radius:8px">
+          <button class="btn btn--principal" type="button" id="btnModalTarjeta" style="width:100%">
+            Pagar con tarjeta · ${precio(precioMostrar)}
+          </button>
+          <p style="font-size:var(--t-xs);color:var(--c-tinta-suave);margin:.5rem 0 0;text-align:center">
+            Crédito o débito, de forma segura por Mercado Pago.</p>
+          <p id="errorModalMP" style="color:#c0392b;font-size:var(--t-xs);margin:.5rem 0 0;display:none"></p>
+        </div>
+
+        <p class="modal-pago__nota" style="margin-top:0">O transferí a una de estas cuentas:</p>
         ${titular ? `<p class="modal-pago__titular">Titular: <strong>${esc(titular)}</strong></p>` : ""}
         ${htmlCuentas}
         <p class="modal-pago__nota">Enviá el comprobante por WhatsApp para confirmar tu compra.</p>
@@ -1620,6 +1631,39 @@
 
     modal.querySelector(".modal-pago__cerrar").addEventListener("click", function() { modal.remove(); });
     modal.addEventListener("click", function(e) { if (e.target === modal) modal.remove(); });
+
+    /* --- Pagar con tarjeta (Mercado Pago) --- */
+    var btnTarjeta = modal.querySelector("#btnModalTarjeta");
+    var errorMP = modal.querySelector("#errorModalMP");
+    btnTarjeta.addEventListener("click", async function() {
+      btnTarjeta.disabled = true;
+      btnTarjeta.textContent = "Conectando con Mercado Pago…";
+      errorMP.style.display = "none";
+      try {
+        var resp = await fetch("/api/crear-preferencia", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: [{
+              title: p.nombre + (p.codigo ? " — Código " + p.codigo : ""),
+              description: "Compra directa desde la tienda",
+              quantity: 1,
+              unit_price: precioMostrar
+            }],
+            payer: {},
+            external_reference: "Compra directa — " + p.nombre
+          })
+        });
+        var data = await resp.json();
+        if (!resp.ok) throw new Error(data.error || "Error al conectar con Mercado Pago");
+        window.location.href = data.init_point;
+      } catch (err) {
+        errorMP.textContent = err.message || "No se pudo conectar. Probá de nuevo o pagá por transferencia.";
+        errorMP.style.display = "block";
+        btnTarjeta.disabled = false;
+        btnTarjeta.textContent = "Pagar con tarjeta · " + precio(precioMostrar);
+      }
+    });
 
     modal.querySelectorAll("[data-copiar]").forEach(function(btn) {
       btn.addEventListener("click", function() {
