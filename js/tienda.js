@@ -707,8 +707,7 @@
           ${esc(marca)} es la flexibilidad: elegís <strong>color, talle y cantidad exacta</strong>
           de cada artículo, según lo que de verdad te piden tus clientes.
           <strong>Sin obligación de llevar curvas cerradas</strong>: dentro de un mismo
-          artículo combinás los talles y colores que quieras.`,
-        nota: `Compra mínima: <strong>${precio(MIN.compraMinima)}</strong>, en productos iguales o surtidos.`
+          artículo combinás los talles y colores que quieras.`
       },
       {
         icono: "🔎",

@@ -86,7 +86,7 @@ window.CONFIG = {
   /* Compra mínima también para la venta por menor.
      Poné 0 si algún día querés sacarla.                                   */
   minorista: {
-    compraMinima: 30000
+    compraMinima: 0
   },
 
   /* --- Envíos -----------------------------------------------------------
@@ -186,7 +186,7 @@ window.CONFIG = {
 
   /* --- Barra de anuncios (rota sola cada 4 segundos) -------------------- */
   anuncios: [
-    "Compra mínima $30.000 · Enviamos a todo el país",
+    "Enviamos a todo el país por Correo Argentino",
     "Atención de 10 a 21 h · Atención personalizada",
     "Despacho de encomiendas todos los días por Correo Argentino",
     "Stock actualizado 24/7 · Últimas tendencias"

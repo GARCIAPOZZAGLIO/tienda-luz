@@ -26,8 +26,6 @@
         <li><strong>No hace falta registrarse.</strong> Elegís, completás tus datos y listo.</li>
         <li>Podés buscar por <strong>código de artículo</strong> además de por nombre.</li>
         <li>El carrito queda guardado aunque cierres el navegador.</li>
-        <li>El carrito te avisa cuánto falta para llegar a la compra mínima,
-            así no te quedás a mitad de camino.</li>
       </ul>
 
       <h2>¿Necesitás ayuda?</h2>
@@ -121,8 +119,7 @@
       <h2>¿Tengo que registrarme para comprar?</h2>
       <p>No. Elegís los productos, completás tus datos y listo.</p>
       <h2>¿Hay compra mínima?</h2>
-      <p>Sí: ${precio(MIN.compraMinima)}.
-         El carrito te muestra en todo momento cuánto falta para alcanzarla.</p>
+      <p>No, no hay compra mínima: podés comprar desde 1 unidad.</p>
 
       <h2>¿Cuándo despachan?</h2>
       <p>Todos los días por Correo Argentino.</p>
