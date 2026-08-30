@@ -609,16 +609,7 @@
           </div>
         </div>
 
-        <div class="envio-nota">
-          <span class="envio-nota__icono">${ICO.pin}</span>
-          <div>
-            <h3>¿Sos de la zona? Comprá directo en el local</h3>
-            <p>Si estás cerca de <strong>${esc(L.localidad || "nuestro local")}</strong>,
-               elegí la opción <strong>“Retiro en el local”</strong> al hacer el pedido.
-               Comprás online y, en cuanto te avisamos por WhatsApp que está listo y empaquetado,
-               pasás a buscarlo por ${esc(L.calle || "")} <strong>sin pagar ningún costo de envío</strong>.</p>
-          </div>
-        </div>
+
       </div>
 
       <div class="envios-cierre">
@@ -717,8 +708,7 @@
           de cada artículo, según lo que de verdad te piden tus clientes.
           <strong>Sin obligación de llevar curvas cerradas</strong>: dentro de un mismo
           artículo combinás los talles y colores que quieras.`,
-        nota: `Compra mínima: <strong>${precio(MIN.compraMinima)} por menor</strong> y
-               <strong>${precio(MAY.compraMinima)} por mayor</strong>, en productos iguales o surtidos.`
+        nota: `Compra mínima: <strong>${precio(MIN.compraMinima)}</strong>, en productos iguales o surtidos.`
       },
       {
         icono: "🔎",
@@ -731,16 +721,15 @@
       {
         icono: "📦",
         titulo: "Completá tus datos y el envío",
-        cuerpo: `Dejanos tus datos de contacto y elegí cómo querés recibirlo.
-          <strong>Llegamos a todo el país.</strong> También podés elegir
-          <strong>retirar gratis por nuestro local</strong> en
-          ${esc(L.localidad || "nuestra zona")}.`
+        cuerpo: `Dejanos tus datos de contacto y de envío.
+          <strong>Llegamos a todo el país.</strong>`
       },
       {
         icono: "💳",
         titulo: "Elegí tu forma de pago",
-        cuerpo: `Podés pagar por <strong>transferencia</strong> al CVU de Mercado Pago o al
-          CBU de Banco Nación, o con <strong>tarjeta y efectivo en el local</strong>.
+        cuerpo: `Podés pagar con <strong>tarjeta de crédito o débito</strong> a través de
+          Mercado Pago, o por <strong>transferencia</strong> al CVU de Mercado Pago o al
+          CBU de Banco Nación.
           Los datos para transferir te aparecen apenas enviás el pedido, con botón para copiarlos.`,
         alerta: `Importante: las transferencias se abonan por el <strong>monto EXACTO</strong>.
                  Si no coincide, el pedido puede demorar más en procesarse.`
@@ -750,7 +739,7 @@
         titulo: "Listo, nosotros nos encargamos del resto",
         cuerpo: `Una vez confirmado el pago, nuestro equipo se pone manos a la obra:
           armamos tu pedido de forma minuciosa, lo empaquetamos con todo el amor y
-          te avisamos apenas esté en camino o listo para retirar.`
+          te avisamos apenas esté en camino.`
       },
       {
         icono: "🚚",
@@ -802,12 +791,11 @@
   /* ------------------------------- Páginas del menú "Antes de comprar" --- */
   const TEMAS_INFO = [
     { slug: "como-comprar",  titulo: "Cómo comprar" },
-    { slug: "mayorista",     titulo: "Comprar por mayor" },
     { slug: "envios",        titulo: "Envíos" },
     { slug: "medios-pago",   titulo: "Medios de pago" },
     { slug: "cambios",       titulo: "Cambios y devoluciones" },
     { slug: "preguntas",     titulo: "Preguntas frecuentes" },
-    { slug: "nosotros",      titulo: "El local y contacto" }
+    { slug: "nosotros",      titulo: "Contacto" }
   ];
 
   /* ==========================================================================
@@ -861,7 +849,6 @@
             <a href="catalogo.html">Ver todo el catálogo</a>
             <a href="catalogo.html?orden=nuevos">Últimos ingresos</a>
             <a href="catalogo.html?oferta=1">Ofertas</a>
-            <a href="catalogo.html?modo=mayorista">Precios por mayor</a>
           </div>
         </div>
       </li>`;
@@ -932,8 +919,6 @@
               ${megaMenu}
               <li><a href="catalogo.html" ${paginaActual === "catalogo" ? 'aria-current="page"' : ""}>Ver todo</a></li>
               <li><a href="catalogo.html?oferta=1">Ofertas</a></li>
-              <li><a href="catalogo.html?modo=mayorista">Por mayor</a></li>
-              <li><a href="info.html?tema=nosotros">Local</a></li>
               <li><a href="${linkWsp(CFG.contacto.mensajeInicial)}" target="_blank" rel="noopener">Contacto</a></li>
             </ul>
           </div>
@@ -1103,7 +1088,6 @@
                       `<li><a href="catalogo.html?categoria=${x.slug}">${esc(x.nombre)}</a></li>`).join("")
                   : `<li><a href="catalogo.html">Ver catálogo</a></li>
                      <li><a href="info.html?tema=como-comprar">Cómo comprar</a></li>
-                     <li><a href="info.html?tema=mayorista">Comprar por mayor</a></li>
                      <li><a href="info.html?tema=envios">Envíos</a></li>`}
               </ul>
             </div>
@@ -1121,8 +1105,6 @@
                 <li><a href="${linkWsp(c.mensajeInicial)}" target="_blank" rel="noopener">
                   WhatsApp ${esc(c.telefonoVisible)}</a></li>
                 <li><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></li>
-                <li><a href="${linkMapa()}" target="_blank" rel="noopener">
-                  ${esc(direccionCompleta() || c.direccion)}</a></li>
                 <li><span style="font-size:var(--t-base);color:var(--c-tinta-suave)">${esc(c.horarios)}</span></li>
               </ul>
               <h4 style="margin-top:1.5rem">Medios de pago</h4>

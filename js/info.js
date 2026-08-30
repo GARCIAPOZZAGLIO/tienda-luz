@@ -24,8 +24,6 @@
       <h2 style="margin-top:3rem">Un par de datos más</h2>
       <ul>
         <li><strong>No hace falta registrarse.</strong> Elegís, completás tus datos y listo.</li>
-        <li>Arriba a la derecha tenés el selector <em>Por menor</em> / <em>Por mayor</em>:
-            los precios de toda la tienda cambian al instante.</li>
         <li>Podés buscar por <strong>código de artículo</strong> además de por nombre.</li>
         <li>El carrito queda guardado aunque cierres el navegador.</li>
         <li>El carrito te avisa cuánto falta para llegar a la compra mínima,
@@ -35,25 +33,6 @@
       <h2>¿Necesitás ayuda?</h2>
       <p>Escribinos por WhatsApp al <a href="${linkWsp(C.mensajeInicial)}" target="_blank" rel="noopener">${esc(C.telefonoVisible)}</a>.
          ${esc(C.horarios)}, con atención personalizada.</p>`,
-
-    "mayorista": `
-      <h1>Comprar por mayor</h1>
-      <p>Trabajamos con revendedores de todo el país. No hace falta registro ni aprobación:
-         activás la modalidad <strong>Por mayor</strong> arriba y ya ves todos los precios mayoristas.</p>
-      <h2>Condiciones</h2>
-      <ul>
-        <li><strong>Compra mínima:</strong> ${precio(MAY.compraMinima)} por pedido.</li>
-        <li><strong>Cantidad mínima por artículo:</strong> ${MAY.unidadesMinimas} unidades.
-            Podés combinar talles y colores dentro del mismo artículo.</li>
-        <li>El precio mayorista figura en cada producto, debajo del precio por menor.</li>
-        <li>Los descuentos por temporada no se acumulan con el precio mayorista.</li>
-      </ul>
-      <h2>Facturación</h2>
-      <p>Emitimos factura B por defecto. Si necesitás factura A, cargá tu CUIT en el formulario
-         de pedido y te la preparamos.</p>
-      <h2>Reposición</h2>
-      <p>Ingresan modelos nuevos todas las semanas. Si querés que te avisemos de los ingresos,
-         escribinos por WhatsApp y te sumamos a la lista de difusión.</p>`,
 
     "envios": `
       <h1>¿Cómo funcionan los envíos? 📦</h1>
@@ -74,8 +53,6 @@
         <li>Cuando confirmamos tu pedido por WhatsApp te pasamos el costo del envío
             según la localidad de destino.</li>
         <li>El envío se abona al despachar o al recibir, según la modalidad.</li>
-        <li><strong>${esc(E.textoRetiro)}</strong> en ${esc(C.direccion)}: si retirás por
-            el local, no pagás envío.</li>
       </ul>
       <h2>Despacho</h2>
       <p><strong>Despachamos encomiendas todos los días por Correo Argentino.</strong>
@@ -87,8 +64,8 @@
 
     "medios-pago": `
       <h1>Medios de pago</h1>
-      <p>Aceptamos tarjeta de crédito, tarjeta de débito, transferencia bancaria,
-         Mercado Pago y efectivo en el local.</p>
+      <p>Aceptamos tarjeta de crédito, tarjeta de débito, transferencia bancaria
+         y Mercado Pago.</p>
 
       ${bloqueMediosPago()}
 
@@ -111,8 +88,8 @@
 
       <h2>Cuotas</h2>
       <p>${CFG.cuotas.cantidad} cuotas ${CFG.cuotas.sinInteres ? "sin interés" : "con interés"}
-         con tarjetas de crédito de bancos adheridos. Las tarjetas se abonan en el local
-         o por link de pago que te enviamos por WhatsApp.</p>
+         con tarjetas de crédito de bancos adheridos, pagando a través de Mercado Pago
+         desde la web.</p>
 
       <h2>Importante</h2>
       <p>La web <strong>no cobra en línea</strong>: no te pide datos de tarjeta en ningún
@@ -143,20 +120,15 @@
       <h1>Preguntas frecuentes</h1>
       <h2>¿Tengo que registrarme para comprar?</h2>
       <p>No. Elegís los productos, completás tus datos y listo.</p>
-      <h2>¿Cuál es la diferencia entre por menor y por mayor?</h2>
-      <p>Por menor comprás desde 1 unidad al precio de lista, con una compra mínima de
-         ${precio(MIN.compraMinima)}. Por mayor accedés a precios más bajos, con un mínimo de
-         ${MAY.unidadesMinimas} unidades por artículo y ${precio(MAY.compraMinima)} de pedido mínimo.</p>
-
       <h2>¿Hay compra mínima?</h2>
-      <p>Sí: ${precio(MIN.compraMinima)} por menor y ${precio(MAY.compraMinima)} por mayor.
+      <p>Sí: ${precio(MIN.compraMinima)}.
          El carrito te muestra en todo momento cuánto falta para alcanzarla.</p>
 
       <h2>¿Cuándo despachan?</h2>
       <p>Todos los días por Correo Argentino.</p>
 
       <h2>¿Qué horario de atención tienen?</h2>
-      <p>${esc(C.horarios)}. La atención es personalizada, por WhatsApp o en el local.</p>
+      <p>${esc(C.horarios)}. La atención es personalizada, por WhatsApp.</p>
       <h2>¿La ropa es unisex de verdad?</h2>
       <p>Sí. Todos nuestros moldes están pensados para cualquier cuerpo. En cada ficha
          tenés la tabla de medidas en centímetros para elegir bien el talle.</p>
@@ -165,24 +137,14 @@
          según la pantalla. Ante la duda, consultanos.</p>
       <h2>¿Hacen envíos al exterior?</h2>
       <p>Por ahora solo enviamos dentro de Argentina.</p>
-      <h2>¿Puedo ver la ropa antes de comprar?</h2>
-      <p>Sí, te esperamos en ${esc(C.direccion)}, ${esc(C.horarios)}.</p>`,
+      <h2>¿Tengo dudas sobre un producto, cómo consulto?</h2>
+      <p>Escribinos por WhatsApp y te mandamos fotos, medidas y todo lo que necesites.</p>`,
 
     "nosotros": `
-      <h1>Nuestro local</h1>
+      <h1>Contacto</h1>
       <p>${esc(CFG.marca.descripcion)}</p>
 
-      <h2>Dónde estamos</h2>
-      <p>
-        <strong>${esc(LOCAL.calle)}</strong>${LOCAL.entreCalles ? ` — ${esc(LOCAL.entreCalles)}` : ""}<br>
-        ${esc(LOCAL.localidad)}, ${esc(LOCAL.provincia)}<br>
-        ${esc(C.horarios)}
-      </p>
-
-      ${mapaHTML("mapa--alto")}
-
       <p style="margin-top:1.5rem">
-        <a class="btn btn--principal" href="${linkMapa()}" target="_blank" rel="noopener">Cómo llegar</a>
         <a class="btn btn--wsp" href="${linkWsp(C.mensajeInicial)}" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
       </p>
 
@@ -196,8 +158,7 @@
 
       <h2>Cómo trabajamos</h2>
       <p>Trabajamos con indumentaria unisex para todos los cuerpos. Renovamos modelos
-         todas las semanas y reponemos los básicos que más se venden. Vendemos por mayor
-         y por menor, y enviamos a todo el país.</p>`
+         todas las semanas y reponemos los básicos que más se venden. Enviamos a todo el país.</p>`
   };
 
   /* -------------------------------------------------------------- Pintado */

@@ -262,7 +262,7 @@
   /* -------------------------------------------------------------- Título */
   function pintarEncabezado() {
     let titulo = "Catálogo completo";
-    let sub = `${PRODS.length} productos · indumentaria por mayor y por menor`;
+    let sub = `${PRODS.length} productos · indumentaria unisex para todos`;
     const migas = ['<a href="index.html">Inicio</a>'];
     const g = estado.genero ? generoPorSlug(estado.genero) : null;
     const qsGen = estado.genero ? `genero=${estado.genero}&` : "";

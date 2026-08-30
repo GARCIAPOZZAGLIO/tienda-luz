@@ -13,7 +13,6 @@
   $("#textoEnvio").textContent = Carrito.envioACargoDelComprador()
     ? `${CFG.envio.demoraEstandar} · el costo del envío lo abona el comprador`
     : `${CFG.envio.demoraEstandar} · costo ${precio(CFG.envio.costoEnvioEstandar)}`;
-  $("#textoRetiro").textContent = `${CFG.envio.textoRetiro} · ${CFG.contacto.direccion}`;
   $("#transporte").innerHTML = CFG.envio.transportes
     .map((t) => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
   $("#calcEnvio").innerHTML = bloqueCalculadora();

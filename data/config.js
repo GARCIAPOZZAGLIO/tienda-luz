@@ -20,7 +20,7 @@ window.CONFIG = {
     logoAltoHeader: 80,             // reducido de 220 — logo enorme trababa el scroll
     logoAltoCompacto: 46,           // alto al que se encoge cuando bajás la página
     logoAltoFooter: 120,            // alto del logo en el pie de página
-    slogan: "Indumentaria unisex por mayor y por menor",
+    slogan: "Indumentaria unisex para todos los cuerpos",
     descripcion: "Indumentaria unisex para todos los cuerpos. Renovamos modelos todas las semanas y enviamos a todo el país.",
     anioFundacion: 2026
   },
@@ -32,7 +32,7 @@ window.CONFIG = {
     mensajeInicial: "¡Hola LUZ! Quiero hacer una consulta 👋",
     email: "Lvelazquez230318@gmail.com",
     telefonoVisible: "11 5509-2841",
-    direccion: "Boyle 1549, Ingeniero Pablo Nogués",
+    direccion: "",
     horarios: "Atención de 10 a 21 h"
   },
 
@@ -41,11 +41,11 @@ window.CONFIG = {
      exacto, abrí Google Maps, buscá el local, copiá la dirección tal cual
      aparece ahí y pegala en esta línea.                                  */
   local: {
-    calle: "Boyle 1549",
-    entreCalles: "entre Luis Vernet y Vías",
-    localidad: "Ingeniero Pablo Nogués",
-    provincia: "Provincia de Buenos Aires",
-    mapaConsulta: "Boyle 1549, Ingeniero Pablo Nogués, Buenos Aires, Argentina",
+    calle: "",
+    entreCalles: "",
+    localidad: "",
+    provincia: "",
+    mapaConsulta: "",
     mostrarMapaEnInicio: false
   },
 
@@ -101,7 +101,7 @@ window.CONFIG = {
     costoEnvioEstandar: 0,
     montoEnvioGratis: 0,
     textoEnvio: "El costo del envío lo abona el comprador",
-    textoRetiro: "Retiro en el local sin cargo",
+    textoRetiro: "",
     demoraEstandar: "3 a 6 días",
     despacho: "Despachamos todos los días por Correo Argentino",
     transportes: ["Correo Argentino"],
@@ -135,9 +135,7 @@ window.CONFIG = {
     { marca: "mastercard",    nombre: "Mastercard",             grupo: "tarjetas" },
     { marca: "amex",          nombre: "American Express",       grupo: "tarjetas" },
     { marca: "cabal",         nombre: "Cabal",                  grupo: "tarjetas" },
-    { marca: "naranja",       nombre: "Naranja",                grupo: "tarjetas" },
-    { marca: "efectivo",      nombre: "Efectivo",               grupo: "efectivo",
-      detalle: "Solo en el local" }
+    { marca: "naranja",       nombre: "Naranja",                grupo: "tarjetas" }
   ],
 
   /* --- DATOS PARA TRANSFERIR --------------------------------------------
@@ -188,7 +186,7 @@ window.CONFIG = {
 
   /* --- Barra de anuncios (rota sola cada 4 segundos) -------------------- */
   anuncios: [
-    "Pedidos por mayor desde $100.000 · Por menor desde $30.000",
+    "Compra mínima $30.000 · Enviamos a todo el país",
     "Atención de 10 a 21 h · Atención personalizada",
     "Despacho de encomiendas todos los días por Correo Argentino",
     "Stock actualizado 24/7 · Últimas tendencias"
@@ -215,15 +213,6 @@ window.CONFIG = {
       bajada: "Básicos de calidad para todos los cuerpos.",
       textoBoton: "Ver catálogo",
       link: "catalogo.html",
-      imagen: ""
-    },
-    /* Sección mayorista desactivada por ahora */
-    {
-      antetitulo: "Ofertas imperdibles",
-      titulo: "Hasta 40% off",
-      bajada: "Últimas unidades de la temporada anterior.",
-      textoBoton: "Ver ofertas",
-      link: "catalogo.html?oferta=1",
       imagen: ""
     }
   ],
