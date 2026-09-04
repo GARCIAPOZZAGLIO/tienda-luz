@@ -142,7 +142,7 @@ window.CONFIG = {
      Es lo que se le muestra al cliente cuando elige pagar.
      Revisá que el titular sea el correcto antes de publicar.             */
   pago: {
-    titular: "LUZ Indumentaria Unisex",
+    titular: "LUZ MILAGRO FONDATI",
     cuentas: [
       {
         entidad: "Mercado Pago",
