@@ -292,7 +292,7 @@ window.PRODUCTOS = [
     "colores": ["azul", "rojo", "rosa gold", "gris"],
     "stock": { "unico": 1 },
     "detalles": ["Colales con diseño floral", "Promo: 2 x $4.000", "Colores: azul, rojo, rosa gold y gris"],
-    "imagenes": ["img/productos/colales-diseño-floral-1.jpg"],
+    "imagenes": ["img/productos/colales-diseno-floral-1.jpg"],
     "destacado": true,
     "nuevo": true,
     "fechaAlta": "2026-09-03",
