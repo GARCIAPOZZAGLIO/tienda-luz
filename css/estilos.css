@@ -1408,13 +1408,18 @@ ul, ol { list-style: none; padding: 0; }
    17. FLOTANTES Y AVISOS
    -------------------------------------------------------------------------- */
 .wsp-flotante {
-  position: fixed; left: 18px; bottom: 18px; z-index: 9999;
+  position: fixed; left: 18px; bottom: 90px; z-index: 9999;
   width: 54px; height: 54px; border-radius: var(--r-full);
   background: var(--c-wsp); display: grid; place-items: center;
   box-shadow: var(--sombra-md); transition: transform var(--trans);
 }
 .wsp-flotante:hover { transform: scale(1.08); }
 .wsp-flotante svg { width: 28px; height: 28px; fill: #fff; }
+
+/* Botón WhatsApp en el header */
+.icono-btn--wsp { background: #25d366 !important; border-radius: 50% !important; color: #fff !important; }
+.icono-btn--wsp:hover { background: #1ebe5d !important; }
+.icono-btn--wsp svg { fill: #fff !important; stroke: none !important; }
 
 .aviso {
   position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 140%);
