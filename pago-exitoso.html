@@ -52,5 +52,28 @@
   <script src="data/config.js?v=12"></script>
   <script src="data/productos.js?v=12"></script>
   <script src="js/tienda.js?v=12"></script>
+  <script>
+  /* Eliminar badge Netlify */
+  (function(){
+    function quitarNetlify(){
+      document.querySelectorAll("*").forEach(function(el){
+        try{
+          var s=window.getComputedStyle(el);
+          if(s.position==="fixed"&&(
+            (el.textContent&&el.textContent.includes("Netlify"))||
+            (el.id&&el.id.toLowerCase().includes("netlify"))||
+            (el.className&&String(el.className).toLowerCase().includes("netlify"))
+          )){el.remove();}
+        }catch(e){}
+      });
+      document.querySelectorAll("iframe,script").forEach(function(el){
+        if((el.src||"").includes("netlify")){el.remove();}
+      });
+    }
+    quitarNetlify();
+    new MutationObserver(quitarNetlify).observe(document.documentElement,{childList:true,subtree:true});
+    setInterval(quitarNetlify,500);
+  })();
+  </script>
 </body>
 </html>
