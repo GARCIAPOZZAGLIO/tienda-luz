@@ -1408,7 +1408,7 @@ ul, ol { list-style: none; padding: 0; }
    17. FLOTANTES Y AVISOS
    -------------------------------------------------------------------------- */
 .wsp-flotante {
-  position: fixed; right: 18px; bottom: 18px; z-index: 150;
+  position: fixed; right: 18px; bottom: 80px; z-index: 9999;
   width: 54px; height: 54px; border-radius: var(--r-full);
   background: var(--c-wsp); display: grid; place-items: center;
   box-shadow: var(--sombra-md); transition: transform var(--trans);
