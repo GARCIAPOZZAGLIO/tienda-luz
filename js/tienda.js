@@ -885,6 +885,7 @@
                  target="_blank" rel="noopener" aria-label="TikTok"
                  title="Seguinos en TikTok ${esc(CFG.redes.tiktokUsuario || "")}">${ICO.tt}</a>` : ""}
 
+            <a class="icono-btn" href="${linkWsp(CFG.mensajeInicial)}" target="_blank" rel="noopener" aria-label="WhatsApp" title="Escribinos por WhatsApp" style="background:#25d366;color:#fff;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;">${ICO.wsp}</a>
             <a class="icono-btn" href="catalogo.html?favoritos=1" aria-label="Favoritos" title="Favoritos">
               ${ICO.corazon}<span class="burbuja" id="burbujaFav" data-vacio="true">0</span>
             </a>
