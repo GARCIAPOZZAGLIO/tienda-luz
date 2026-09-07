@@ -1129,7 +1129,7 @@
       </footer>
 
       <a class="wsp-flotante" href="${linkWsp(c.mensajeInicial)}" target="_blank" rel="noopener"
-         aria-label="Escribinos por WhatsApp">${ICO.wsp}</a>`;
+         aria-label="Escribinos por WhatsApp" style="position:fixed!important;left:18px!important;right:auto!important;bottom:18px!important;z-index:2147483647!important;">${ICO.wsp}</a>`;
   }
 
   /* ==========================================================================
